@@ -1,0 +1,20 @@
+import re
+
+
+id = re.compile(ur'^%I (A\d+) ?([MN]\d+)? ?([MN]\d+)?', re.M)
+unsigned = re.compile(ur'^%[STU] A\d+ ((?:\d+,?)*)', re.M)
+signed = re.compile(ur'^%[VWX] A\d+ ((?:-?\d+,?)*)', re.M)
+name = re.compile(ur'^%N A\d+ ([^.]+)', re.M)
+reference = re.compile(ur'^%D A\d+ ([^.]+)', re.M)
+link = re.compile(ur'^%H A\d+ (.*)<a href="(.*)">(.*)<\/a>')
+formula = re.compile(ur'^%F A\d+ ([^.]+)', re.M)
+cross_reference = re.compile(ur'^%Y A\d+ (.+)\.?', re.M)
+author = re.compile(ur'^%A A\d+ (.+),?', re.M)
+offset = re.compile(ur'^%O A\d+ (\d+), ?(\d+)')
+maple = re.compile(ur'^%p A\d+ (.+)')
+mathematica = re.compile(ur'^%t A\d+ (.+)')
+other_programs = re.compile(ur'^%o A\d+ (.+)')
+error = re.compile(ur'^%E A\d+ (.+)\.?')
+example = re.compile(ur'^%e A\d+ (.+)')
+keywords = re.compile(ur'%K A\d+ [a-zA-Z]+,?')
+comment = re.compile(ur'%C A\d+ (.+)')
