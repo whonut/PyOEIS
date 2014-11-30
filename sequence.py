@@ -1,4 +1,23 @@
 class Sequence(object):
-    def __init__(self, seq_dict):
-        self.__dict__ = seq_dict
-        
+    def __init__(self):
+        self.id = None
+        self.alt_ids = []
+        self.unsigned = []
+        self.signed = []
+        self.name = None
+        self.references = []
+        self.links = []
+        self.formulae = []
+        self.cross_references = []
+        self.author = None
+        self.offset = None
+        self.errors = []
+        self.examples = []
+        self.maple = None
+        self.mathematica = None
+        self.other_programs = []
+        self.keywords = []
+        self.comments = []
+
+    def __str__(self):
+        return '<Sequence object for "' + self.name + '">'
