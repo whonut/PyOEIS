@@ -9,10 +9,8 @@ Contents:
 .. toctree::
     :maxdepth: 2
     
-    Introduction
-    API
-
-
+    introduction
+    api
 
 Indices and tables
 ==================
