@@ -21,3 +21,11 @@ class Sequence(object):
 
     def __str__(self):
         return '<Sequence object for "' + self.name + '">'
+
+    def unsigned(self, n):
+        '''Returns the first n unsigned integers in the sequence.'''
+        return self.unsigned[:n]
+
+    def signed(self, n):
+        '''Returns the first n signed integers in the sequence.'''
+        return self.signed[:n]

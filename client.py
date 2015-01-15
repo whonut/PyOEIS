@@ -6,6 +6,7 @@ from sequence import Sequence
 import regex
 import helpers
 from errors import NoResultsError, InvalidQueryError, TooManyResultsError
+from partialmethod import partialmethod
 
 
 class OEISClient(object):
@@ -16,8 +17,8 @@ class OEISClient(object):
         self.session.params = {'fmt': 'text'}
 
     def _check_response(self, response_text, query):
-        '''Checks reponses from the OEIS, raises exception else allows outer
-           functions to handle ambiguous cases'''
+        '''Checks reponses from the OEIS, raises relevant exception upon
+           error.'''
 
         # if no results are found, raise appropriate exception
         if response_text.find('\nNo results.\n') != -1:
@@ -33,8 +34,7 @@ class OEISClient(object):
 
     def _parse_sequence(self, sequence_entry):
         '''Builds a Sequence object from an individual internal format
-           sequence entry and returns it. Returns None for query with no
-           results.'''
+           sequence entry and returns it.'''
 
         s = Sequence()
 
@@ -49,32 +49,47 @@ class OEISClient(object):
         s.unsigned = map(int, unsigned_strs)
 
         # parse %V, %W and %X
-        signed_findall = regex.signed.findall(sequence_entry)
-        signed_strs = helpers.parse_comma_separated_findall(signed_findall)
-        s.signed = map(int, signed_strs)
+        try:
+            signed_findall = regex.signed.findall(sequence_entry)
+            signed_strs = helpers.parse_comma_separated_findall(signed_findall)
+            s.signed = map(int, signed_strs)
+        except AttributeError:
+            pass
 
         # parse %N
         name_search = regex.name.search(sequence_entry)
         s.name = name_search.groups()[0]
 
         # parse %D
-        reference_findall = regex.reference.findall(sequence_entry)
-        s.references = reference_findall
+        try:
+            reference_findall = regex.reference.findall(sequence_entry)
+            s.references = reference_findall
+        except AttributeError:
+            pass
 
         # parse %H
-        link_findall = regex.link.findall(sequence_entry)
-        for l in link_findall:
-            url = l[1]
-            text = l[0] + l[2] + l[3]
-            s.links.append({'text': text, 'url': url})
+        try:
+            link_findall = regex.link.findall(sequence_entry)
+            for l in link_findall:
+                url = l[1]
+                text = l[0] + l[2] + l[3]
+                s.links.append({'text': text, 'url': url})
+        except AttributeError:
+            pass
 
         # parse %F
-        formula_findall = regex.formula.findall(sequence_entry)
-        s.formulae.extend(formula_findall)
+        try:
+            formula_findall = regex.formula.findall(sequence_entry)
+            s.formulae.extend(formula_findall)
+        except AttributeError:
+            pass
 
         # parse %Y
-        crossreference_findall = regex.cross_reference.findall(sequence_entry)
-        s.cross_references.extend(crossreference_findall)
+        try:
+            crossref_findall = regex.cross_reference.findall(sequence_entry)
+            s.cross_references.extend(crossref_findall)
+        except AttributeError:
+            pass
 
         # parse %A
         author_search = regex.author.search(sequence_entry)
@@ -85,38 +100,57 @@ class OEISClient(object):
         s.offset = tuple(map(int, offset_search.groups()))
 
         # parse %E
-        error_findall = regex.error.findall(sequence_entry)
-        s.errors.extend(error_findall)
+        try:
+            error_findall = regex.error.findall(sequence_entry)
+            s.errors.extend(error_findall)
+        except AttributeError:
+            pass
 
         # parse %e
-        example_findall = regex.example.findall(sequence_entry)
-        s.examples.extend(example_findall)
+        try:
+            example_findall = regex.example.findall(sequence_entry)
+            s.examples.extend(example_findall)
+        except AttributeError:
+            pass
 
         # parse %p
-        maple_search = regex.maple.search(sequence_entry)
-        s.maple = maple_search.groups()[0]
+        try:
+            maple_search = regex.maple.search(sequence_entry)
+            s.maple = maple_search.groups()[0]
+        except AttributeError:
+            pass
 
         # parse %t
-        mathematica_search = regex.mathematica.search(sequence_entry)
-        s.mathematica = mathematica_search.groups()[0]
+        try:
+            mathematica_search = regex.mathematica.search(sequence_entry)
+            s.mathematica = mathematica_search.groups()[0]
+        except AttributeError:
+            pass
 
         # parse %o
-        otherprograms_findall = regex.other_programs.findall(sequence_entry)
-        s.other_programs.extend(otherprograms_findall)
+        try:
+            otherprogs_findall = regex.other_programs.findall(sequence_entry)
+            s.other_programs.extend(otherprogs_findall)
+        except AttributeError:
+            pass
 
         # parse %K
         keywords_findall = regex.keywords.findall(sequence_entry)
         s.keywords = helpers.parse_comma_separated_findall(keywords_findall)
 
         # parse %C
-        comment_findall = regex.comment.findall(sequence_entry)
-        s.comments.extend(comment_findall)
+        try:
+            comment_findall = regex.comment.findall(sequence_entry)
+            s.comments.extend(comment_findall)
+        except AttributeError:
+            pass
 
         return s
 
     def _parse_response(self, response_text):
         '''Takes a multi-sequence internal format response & builds Sequence
-           objects for each sequence. Returns a list of the Sequence objects'''
+           objects for each sequence. Returns a list of the Sequence
+           objects.'''
 
         blankline_split = regex.blank_line.split(response_text)
         seqs = []
@@ -128,34 +162,73 @@ class OEISClient(object):
 
         return seqs
 
-    def _int_lookup(self, search_string):
-        '''Internal version of lookup_by_string with no error-handling.
-           Used to implement other lookup functions'''
-        response = self.session.get(self.SEARCH_URL,
-                                    params={'q': search_string})
-        self._check_response(response.text, search_string)
-        seqs = self._parse_response(response.text)
-        return seqs
+    def lookup_by(self, prefix, query, max_seqs=10, list_func=False):
+        '''If prefix is '' (an empty string), search OEIS with string query,
+           otherwise use string 'prefix:query'.
 
-    def lookup_by_string(self, search_string):
-        '''Returns a list of sequences matching search_string'''
+           If list_func is True, return a list of at most max_seqs Sequences
+           or else an empty list if there are no results. If list_func is
+           False, return the first Sequence found, or else raise a
+           NoResultsError.'''
+
+        if not prefix:
+            search_string = query
+        else:
+            search_string = '{}:{}'.format(prefix, query)
+
         try:
-            return self._int_lookup(search_string)
-        except NoResultsError:      # return empty list if no sequences match
-            return []
+            response = self.session.get(self.SEARCH_URL,
+                                        params={'q': search_string})
+            self._check_response(response.text, search_string)
+            seqs = self._parse_response(response.text)
+            num_seqs = regex.showing_line.search(response.text).groups()[0]
+            for i in xrange(10, (int(num_seqs) - (int(num_seqs) % 10)) + 1):
+                if len(seqs) < max_seqs:
+                    response = self.session.get(self.SEARCH_URL,
+                                                params={'q': search_string,
+                                                        'start': str(i)})
+                    self._check_response(response.text, search_string)
+                    seqs.extend(self._parse_response(response.text))
+                else:
+                    break
 
-    def get_sequence_by_id(self, id):
-        '''Returns a Sequence object for the sequence of the specified ID,
-           else raises NoResultsError'''
-        seq = self._int_lookup('id:'+id)[0]
-        return seq
+            if len(seqs) > max_seqs:
+                seqs = seqs[:max_seqs]
 
-    def lookup_by_terms(self, *terms, **kwargs):
+            return seqs
+
+        except NoResultsError:
+            if list_func:
+                return []
+            else:
+                raise NoResultsError(search_string)
+
+    get_by_id = partialmethod(lookup_by, 'id')
+    get_by_id.__doc__ = '''Returns a Sequence for the sequence of the specified
+                           ID, else raises NoResultsError.'''
+    lookup_by_name = partialmethod(lookup_by, 'name', list_func=True)
+    lookup_by_name.__doc__ = '''Returns a list of Sequences whose names
+                                contain the query string.'''
+    lookup_by_author = partialmethod(lookup_by, 'author', list_func=True)
+    lookup_by_author.__doc__ = '''Returns a list of sequences whose authors
+                                contain the query string.'''
+
+    def lookup_by_keywords(self, keywords):
+        '''Returns a list of Sequences with the given keywords
+
+           keywords -> list'''
+
+        query = '"'+' '.join(keywords)+'"'
+        return self.lookup_by('keyword', query, list_func=True)
+
+    def lookup_by_terms(self, terms, **kwargs):
         '''Returns Sequences which have the given terms anywhere within them.
            If none exist, returns an empty list. If the keyword argument
            'ordered' is given as False, terms may be in any order. If the
            keyword argument 'signed' is given as False, terms may be positive
-           or negative.'''
+           or negative.
+
+           terms -> list'''
 
         # if order does not matter, specify in search query (space-delimited)
         if ('ordered' in kwargs) and not kwargs['ordered']:
@@ -166,12 +239,14 @@ class OEISClient(object):
 
         # if sign does not matter, specify in search query (space-delimited)
         if ('signed' in kwargs) and not kwargs['signed']:
-            query = 'seq:' + query
+            return self.lookup_by('seq', query, list_func=True)
         else:
             # signed is assumed True
-            query = 'signed:' + query
+            return self.lookup_by('signed', query, list_func=True)
 
-        try:
-            return self._int_lookup(query)
-        except NoResultsError:
-            return []
+        def extend_sequence(self, *terms):
+            '''Returns the first sequence, sorting by relevance, which contains
+               the given terms consecutively.'''
+
+            seqs = self.lookup_by_terms(*terms)
+            return seqs[0]
