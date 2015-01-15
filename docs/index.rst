@@ -7,12 +7,10 @@ Welcome to PyOEIS's documentation!
 Contents:
 
 .. toctree::
-    :maxdepth: 2
-    
-    Introduction
-    API
+   :maxdepth: 2
 
-
+   Introduction
+   API
 
 Indices and tables
 ==================
