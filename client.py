@@ -167,9 +167,9 @@ class OEISClient(object):
            otherwise use string '*prefix*:*query*'.
 
            If *list_func* is true, return a list of at most
-           *max_seqs* :class:`Sequence <sequence.Sequence>` or else an empty
-           list if there are no results. If *list_func* is false, return the
-           first Sequence found, or else raise a
+           *max_seqs* :class:`Sequence <sequence.Sequence>` objects or else an
+           empty list if there are no results. If *list_func* is false, return
+           the first Sequence found, or else raise a
            :exc:`NoResultsError <errors.NoResultsError>`.'''
 
         if not prefix:
@@ -218,17 +218,19 @@ class OEISClient(object):
                                   whose authors contain *query*.'''
 
     def lookup_by_keywords(self, keywords):
-        '''Returns a list of :class:`Sequence <sequence.Sequence>` objects
-           which are tagged with *keywords*.'''
+        '''Returns a list of at most *max_seqs*
+           :class:`Sequence <sequence.Sequence>` objects which are tagged with
+           *keywords*.'''
 
         query = '"'+' '.join(keywords)+'"'
         return self.lookup_by('keyword', query, list_func=True)
 
     def lookup_by_terms(self, terms, **kwargs):
-        '''Returns a list of :class:`Sequence <sequence.Sequence>` objects
-           which contain *terms* anywhere within them. If none exist, returns
-           an empty list. If *ordered* is false, terms may be in any order. If
-           the *signed* is false, terms may be positive or negative.'''
+        '''Returns a list of at most *max_seqs*
+           :class:`Sequence <sequence.Sequence>` objects which contain *terms*
+           anywhere within them. If none exist, returns an empty list. If
+           *ordered* is false, terms may be in any order. If *signed* is false,
+           terms may be positive or negative.'''
 
         # if order does not matter, specify in search query (space-delimited)
         if ('ordered' in kwargs) and not kwargs['ordered']:

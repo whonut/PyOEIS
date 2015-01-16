@@ -14,7 +14,7 @@
 
 
 \title{PyOEIS Documentation}
-\date{January 15, 2015}
+\date{January 16, 2015}
 \release{1.0}
 \author{Dylan Evans}
 \newcommand{\sphinxlogo}{}
@@ -127,8 +127,300 @@
 Contents:
 
 
+\chapter{Introduction}
+\label{introduction:introduction}\label{introduction::doc}\label{introduction:welcome-to-pyoeis-s-documentation}
+The \href{http://www.oeis.org}{Online Encyclopedia of Integer Sequences (OEIS)} is
+a database of integer sequences. It contains many well-known sequences, such as
+the primes and Fibonacci numbers as well as many more obscure sequences.
+
+PyOEIS allows for the searching of the OEIS from within Python, as well as
+allowing you to access sequence information through
+{\hyperref[api:sequence.Sequence]{\code{Sequence}}} objects.
+
+
+\section{OEIS Search Syntax and Other Useful Links}
+\label{introduction:oeis-search-syntax-and-other-useful-links}
+While PyOEIS provides many porcelain methods which allow you to search by
+sequence ID, author etc., it is also possible to query the OEIS using its
+usual search syntax (as you would on the website). It may also be useful to
+understand how the OEIS operates for debugging purposes. The following links
+may therefore be of use:
+\begin{itemize}
+\item {} 
+\href{http://oeis.org/hints.html}{Hints and search syntax}
+
+\item {} 
+\href{http://oeis.org/eishelp1.html}{Explanation of the OEIS internal format (which PyOEIS is built upon)}
+
+\item {} 
+\href{http://oeis.org/eishelp2.html}{Explanation of the fields in each sequence entry}
+
+\end{itemize}
+
+
+\chapter{API}
+\label{api:api}\label{api::doc}
+
+\section{\texttt{Client} objects}
+\label{api:client-objects}\index{OEISClient (class in client)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:client.OEISClient}\pysigline{\strong{class }\code{client.}\bfcode{OEISClient}}
+Maintains a \href{http://docs.python-requests.org/en/latest/api/\#requests.Session}{\code{Session}} and contains
+all methods for querying the OEIS.
+\index{get\_by\_id() (OEISClient method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:OEISClient.get_by_id}\pysiglinewithargsret{\bfcode{get\_by\_id}}{\emph{id}}{}
+Returns a {\hyperref[api:sequence.Sequence]{\code{Sequence}}} for the sequence with the ID \emph{id}, or else
+raises {\hyperref[api:errors.NoResultsError]{\code{NoResultsError}}}.
+
+\end{fulllineitems}
+
+\index{lookup\_by\_name() (OEISClient method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:OEISClient.lookup_by_name}\pysiglinewithargsret{\bfcode{lookup\_by\_name}}{\emph{name}, \emph{max\_seqs=10}}{}~
+\begin{notice}{note}{Note:}
+Sequences are retrieved in sets of 10 and sequences are then removed if
+necessary. So, there is no speed improvement between, for example, a
+\emph{max\_seqs} of 10 and one of 15. This applies to all methods with a
+\emph{max\_seqs} argument.
+\end{notice}
+
+Returns a list of at most \emph{max\_seqs} {\hyperref[api:sequence.Sequence]{\code{Sequence}}}
+objects whose names contain \emph{query}.
+
+\end{fulllineitems}
+
+\index{lookup\_by\_author() (OEISClient method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:OEISClient.lookup_by_author}\pysiglinewithargsret{\bfcode{lookup\_by\_author}}{\emph{author}, \emph{max\_seqs=10}}{}
+Returns a list of at most \emph{max\_seqs} {\hyperref[api:sequence.Sequence]{\code{Sequence}}}
+objects whose authors contain \emph{query}.
+
+\end{fulllineitems}
+
+\index{lookup\_by() (client.OEISClient method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:client.OEISClient.lookup_by}\pysiglinewithargsret{\bfcode{lookup\_by}}{\emph{prefix}, \emph{query}, \emph{max\_seqs=10}, \emph{list\_func=False}}{}
+If \emph{prefix} is \emph{``''}, search OEIS with string \emph{query},
+otherwise use string `\emph{prefix}:\emph{query}`.
+
+If \emph{list\_func} is true, return a list of at most
+\emph{max\_seqs} {\hyperref[api:sequence.Sequence]{\code{Sequence}}} objects or else an
+empty list if there are no results. If \emph{list\_func} is false, return
+the first Sequence found, or else raise a
+{\hyperref[api:errors.NoResultsError]{\code{NoResultsError}}}.
+
+\end{fulllineitems}
+
+\index{lookup\_by\_keywords() (client.OEISClient method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:client.OEISClient.lookup_by_keywords}\pysiglinewithargsret{\bfcode{lookup\_by\_keywords}}{\emph{keywords}}{}
+Returns a list of at most \emph{max\_seqs}
+{\hyperref[api:sequence.Sequence]{\code{Sequence}}} objects which are tagged with
+\emph{keywords}.
+
+\end{fulllineitems}
+
+\index{lookup\_by\_terms() (client.OEISClient method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:client.OEISClient.lookup_by_terms}\pysiglinewithargsret{\bfcode{lookup\_by\_terms}}{\emph{terms}, \emph{**kwargs}}{}
+Returns a list of at most \emph{max\_seqs}
+{\hyperref[api:sequence.Sequence]{\code{Sequence}}} objects which contain \emph{terms}
+anywhere within them. If none exist, returns an empty list. If
+\emph{ordered} is false, terms may be in any order. If \emph{signed} is false,
+terms may be positive or negative.
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+
+\section{\texttt{Sequence} objects}
+\label{api:sequence-objects}
+
+\subsection{Attributes}
+\label{api:attributes}
+\begin{tabulary}{\linewidth}{|L|L|}
+\hline
+
+id
+ & 
+The sequence's unique ID in the OEIS, as a string. Begins `A'.
+\\
+
+alt\_ids
+ & 
+Other IDs, as a list of strings beginning `M' and `N' which
+the sequence carried in the ``The Encyclopedia of Integer
+Sequences'', 1995 or the ``Handbook of Integer Sequences'', 1973,
+respectively.
+\\
+
+unsigned
+ & 
+A list of terms in the sequence without any minus signs.
+\\
+
+signed
+ & 
+A list of terms in the sequence \emph{including} any minus signs.
+\\
+
+name
+ & 
+The name of the sequence, as a string.
+\\
+
+references
+ & 
+A list of references to the sequence.
+\\
+
+links
+ & 
+A list of links about the sequence.
+\\
+
+formulae
+ & 
+Formulae for generating the sequence, as a list of strings.
+\\
+
+cross\_references
+ & 
+Cross-references to the sequence from elsewhere in the OEIS,
+as a list of strings.
+\\
+
+author
+ & 
+The author of the sequence entry, as a string.
+\\
+
+offset
+ & 
+The subscript of the first term and the position of the first
+term whose modulus exceeds 1, as a tuple of two numbers.
+\\
+
+errors
+ & 
+Errors in the sequence entry, as a list of strings.
+\\
+
+examples
+ & 
+Examples to illustrate the sequence, as a list of strings.
+\\
+
+maple
+ & 
+Maple code to generate the sequence, as a string.
+\\
+
+mathematica
+ & 
+Mathematica code to generate the sequence, as a string.
+\\
+
+other\_programs
+ & 
+Code to generate the sequence in other programs/languages, as
+a list of strings.
+\\
+
+keywords
+ & 
+The sequence's keywords, as a list of strings.
+\\
+
+comments
+ & 
+Comments on the sequence entry, as a list of strings.
+\\
+\hline\end{tabulary}
+
+
+More information about the fields in a sequence entry can be found \href{http://oeis.org/eishelp2.html}{here}.
+
+
+\subsection{Methods}
+\label{api:methods}\index{Sequence (class in sequence)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:sequence.Sequence}\pysigline{\strong{class }\code{sequence.}\bfcode{Sequence}}
+Has attributes to contain information for each field of a sequence entry
+in the OEIS and methods fot retrieving a certain number of the
+sequence's signed or unsigned terms.
+\index{signed() (sequence.Sequence method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:sequence.Sequence.signed}\pysiglinewithargsret{\bfcode{signed}}{\emph{n}}{}
+Returns the first \emph{n} signed integers in the sequence.
+
+\end{fulllineitems}
+
+\index{unsigned() (sequence.Sequence method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:sequence.Sequence.unsigned}\pysiglinewithargsret{\bfcode{unsigned}}{\emph{n}}{}
+Returns the first \emph{n} unsigned integers in the sequence.
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+
+\section{\texttt{Errors}}
+\label{api:module-errors}\label{api:errors}\index{errors (module)}\index{InvalidQueryError}
+
+\begin{fulllineitems}
+\phantomsection\label{api:errors.InvalidQueryError}\pysiglinewithargsret{\strong{exception }\code{errors.}\bfcode{InvalidQueryError}}{\emph{response}}{}
+Raised when a search is invalid according to the OEIS search syntax.
+
+\end{fulllineitems}
+
+\index{NoResultsError}
+
+\begin{fulllineitems}
+\phantomsection\label{api:errors.NoResultsError}\pysiglinewithargsret{\strong{exception }\code{errors.}\bfcode{NoResultsError}}{\emph{query}}{}
+Raised when a search gives no results and it is unacceptable to return
+an empty list.
+
+\end{fulllineitems}
+
+\index{OEISException}
+
+\begin{fulllineitems}
+\phantomsection\label{api:errors.OEISException}\pysigline{\strong{exception }\code{errors.}\bfcode{OEISException}}
+Base class for PyOEIS exceptions.
+
+\end{fulllineitems}
+
+\index{TooManyResultsError}
+
+\begin{fulllineitems}
+\phantomsection\label{api:errors.TooManyResultsError}\pysiglinewithargsret{\strong{exception }\code{errors.}\bfcode{TooManyResultsError}}{\emph{query}}{}
+Raised when too many results are found for a search for them to be
+properly parsed.
+
+\end{fulllineitems}
+
+
+
 \chapter{Indices and tables}
-\label{index:indices-and-tables}\label{index:welcome-to-pyoeis-s-documentation}\begin{itemize}
+\label{index:indices-and-tables}\begin{itemize}
 \item {} 
 \emph{genindex}
 
@@ -141,6 +433,12 @@ Contents:
 \end{itemize}
 
 
+\renewcommand{\indexname}{Python Module Index}
+\begin{theindex}
+\def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
+\bigletter{e}
+\item {\texttt{errors}}, \pageref{api:module-errors}
+\end{theindex}
 
 \renewcommand{\indexname}{Index}
 \printindex

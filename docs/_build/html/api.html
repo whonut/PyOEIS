@@ -59,7 +59,7 @@
 all methods for querying the OEIS.</p>
 <dl class="method">
 <dt id="OEISClient.get_by_id">
-<tt class="descname">get_by_id</tt><big>(</big><em>id</em>, <em>max_seqs=10</em><big>)</big><a class="headerlink" href="#OEISClient.get_by_id" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">get_by_id</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#OEISClient.get_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> for the sequence with the ID <em>id</em>, or else
 raises <a class="reference internal" href="#errors.NoResultsError" title="errors.NoResultsError"><tt class="xref py py-exc docutils literal"><span class="pre">NoResultsError</span></tt></a>.</p>
 </dd></dl>
@@ -67,14 +67,22 @@ raises <a class="reference internal" href="#errors.NoResultsError" title="errors
 <dl class="method">
 <dt id="OEISClient.lookup_by_name">
 <tt class="descname">lookup_by_name</tt><big>(</big><em>name</em>, <em>max_seqs=10</em><big>)</big><a class="headerlink" href="#OEISClient.lookup_by_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> objects whose names contain
-<em>query</em>.</p>
+<dd><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Sequences are retrieved in sets of 10 and sequences are then removed if
+necessary. So, there is no speed improvement between, for example, a
+<em>max_seqs</em> of 10 and one of 15. This applies to all methods with a
+<em>max_seqs</em> argument.</p>
+</div>
+<p>Returns a list of at most <em>max_seqs</em> <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a>
+objects whose names contain <em>query</em>.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="OEISClient.lookup_by_author">
 <tt class="descname">lookup_by_author</tt><big>(</big><em>author</em>, <em>max_seqs=10</em><big>)</big><a class="headerlink" href="#OEISClient.lookup_by_author" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> objects whose authors contain <em>query</em>.</p>
+<dd><p>Returns a list of at most <em>max_seqs</em> <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a>
+objects whose authors contain <em>query</em>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -83,26 +91,28 @@ raises <a class="reference internal" href="#errors.NoResultsError" title="errors
 <dd><p>If <em>prefix</em> is <cite>&#8220;&#8221;</cite>, search OEIS with string <em>query</em>,
 otherwise use string &#8216;<em>prefix</em>:<em>query</em>&#8216;.</p>
 <p>If <em>list_func</em> is true, return a list of at most
-<em>max_seqs</em> <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> or else an empty
-list if there are no results. If <em>list_func</em> is false, return the
-first Sequence found, or else raise a
+<em>max_seqs</em> <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> objects or else an
+empty list if there are no results. If <em>list_func</em> is false, return
+the first Sequence found, or else raise a
 <a class="reference internal" href="#errors.NoResultsError" title="errors.NoResultsError"><tt class="xref py py-exc docutils literal"><span class="pre">NoResultsError</span></tt></a>.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="client.OEISClient.lookup_by_keywords">
 <tt class="descname">lookup_by_keywords</tt><big>(</big><em>keywords</em><big>)</big><a class="headerlink" href="#client.OEISClient.lookup_by_keywords" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> objects
-which are tagged with <em>keywords</em>.</p>
+<dd><p>Returns a list of at most <em>max_seqs</em>
+<a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> objects which are tagged with
+<em>keywords</em>.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="client.OEISClient.lookup_by_terms">
 <tt class="descname">lookup_by_terms</tt><big>(</big><em>terms</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#client.OEISClient.lookup_by_terms" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> objects
-which contain <em>terms</em> anywhere within them. If none exist, returns
-an empty list. If <em>ordered</em> is false, terms may be in any order. If
-the <em>signed</em> is false, terms may be positive or negative.</p>
+<dd><p>Returns a list of at most <em>max_seqs</em>
+<a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> objects which contain <em>terms</em>
+anywhere within them. If none exist, returns an empty list. If
+<em>ordered</em> is false, terms may be in any order. If <em>signed</em> is false,
+terms may be positive or negative.</p>
 </dd></dl>
 
 </dd></dl>

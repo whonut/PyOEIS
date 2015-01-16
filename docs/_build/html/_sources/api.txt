@@ -7,19 +7,27 @@ API
 .. autoclass:: client.OEISClient
   :members: lookup_by, lookup_by_keywords, lookup_by_terms
 
-  .. method:: get_by_id(id, max_seqs=10)
-
-     Returns a :class:`Sequence <sequence.Sequence>` for the sequence with the ID *id*, or else 
-     raises :exc:`NoResultsError <errors.NoResultsError>`.
+  .. method:: get_by_id(id)
+  
+    Returns a :class:`Sequence <sequence.Sequence>` for the sequence with the ID *id*, or else 
+    raises :exc:`NoResultsError <errors.NoResultsError>`.
 
   .. method:: lookup_by_name(name, max_seqs=10)
 
-     Returns a list of :class:`Sequence <sequence.Sequence>` objects whose names contain 
-     *query*.
+    .. note::
+
+      Sequences are retrieved in sets of 10 and sequences are then removed if
+      necessary. So, there is no speed improvement between, for example, a 
+      *max_seqs* of 10 and one of 15. This applies to all methods with a
+      *max_seqs* argument.
+
+    Returns a list of at most *max_seqs* :class:`Sequence <sequence.Sequence>` 
+    objects whose names contain *query*.
 
   .. method:: lookup_by_author(author, max_seqs=10)
 
-     Returns a list of :class:`Sequence <sequence.Sequence>` objects whose authors contain *query*.
+     Returns a list of at most *max_seqs* :class:`Sequence <sequence.Sequence>`
+     objects whose authors contain *query*.
   
 :class:`Sequence <sequence.Sequence>` objects
 ---------------------------------------------
@@ -61,10 +69,10 @@ Methods
 ^^^^^^^
 
 .. autoclass:: sequence.Sequence
-   :members:
+  :members:
 
 :mod:`Errors <errors>`
 ----------------------
 
 .. automodule:: errors
-   :members:
+  :members:
