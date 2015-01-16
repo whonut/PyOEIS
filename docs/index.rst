@@ -1,7 +1,7 @@
-.. PyOEIS documentation master file, created by
+.. pyoeis's documentation master file, created by
    sphinx-quickstart on Wed Jan 14 19:47:33 2015.
 
-Welcome to PyOEIS's documentation!
+Welcome to pyoeis's documentation!
 ==================================
 
 Contents:
@@ -11,6 +11,7 @@ Contents:
  
    introduction
    api
+   usage
 
 Indices and tables
 ==================

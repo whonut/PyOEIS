@@ -24,6 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="PyOEIS 1.0 documentation" href="index.html" />
+    <link rel="next" title="Usage" href="usage.html" />
     <link rel="prev" title="Introduction" href="introduction.html" /> 
   </head>
   <body>
@@ -36,6 +37,9 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="usage.html" title="Usage"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="introduction.html" title="Introduction"
              accesskey="P">previous</a> |</li>
@@ -50,8 +54,8 @@
             
   <div class="section" id="api">
 <h1>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="client-objects">
-<h2><a class="reference internal" href="#client.OEISClient" title="client.OEISClient"><tt class="xref py py-class docutils literal"><span class="pre">Client</span></tt></a> objects<a class="headerlink" href="#client-objects" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="oeisclient-objects">
+<h2><a class="reference internal" href="#client.OEISClient" title="client.OEISClient"><tt class="xref py py-class docutils literal"><span class="pre">OEISClient</span></tt></a> objects<a class="headerlink" href="#oeisclient-objects" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="client.OEISClient">
 <em class="property">class </em><tt class="descclassname">client.</tt><tt class="descname">OEISClient</tt><a class="headerlink" href="#client.OEISClient" title="Permalink to this definition">¶</a></dt>
@@ -60,22 +64,28 @@ all methods for querying the OEIS.</p>
 <dl class="method">
 <dt id="OEISClient.get_by_id">
 <tt class="descname">get_by_id</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#OEISClient.get_by_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> for the sequence with the ID <em>id</em>, or else
-raises <a class="reference internal" href="#errors.NoResultsError" title="errors.NoResultsError"><tt class="xref py py-exc docutils literal"><span class="pre">NoResultsError</span></tt></a>.</p>
+<dd><p>Returns a <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> for the sequence with the
+ID <em>id</em>, or else raises <a class="reference internal" href="#errors.NoResultsError" title="errors.NoResultsError"><tt class="xref py py-exc docutils literal"><span class="pre">NoResultsError</span></tt></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">On the OEIS website, IDs are displayed with an uppercase letter and 6
+(for A IDs) or 4 (for M and N IDs) digits. However, this method does not
+require an uppercase letter or leading zeros to be used.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="OEISClient.lookup_by_name">
 <tt class="descname">lookup_by_name</tt><big>(</big><em>name</em>, <em>max_seqs=10</em><big>)</big><a class="headerlink" href="#OEISClient.lookup_by_name" title="Permalink to this definition">¶</a></dt>
-<dd><div class="admonition note">
+<dd><p>Returns a list of at most <em>max_seqs</em> <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a>
+objects whose names contain <em>query</em>.</p>
+<div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Sequences are retrieved in sets of 10 and sequences are then removed if
 necessary. So, there is no speed improvement between, for example, a
 <em>max_seqs</em> of 10 and one of 15. This applies to all methods with a
 <em>max_seqs</em> argument.</p>
 </div>
-<p>Returns a list of at most <em>max_seqs</em> <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a>
-objects whose names contain <em>query</em>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -256,7 +266,7 @@ properly parsed.</p>
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">API</a><ul>
-<li><a class="reference internal" href="#client-objects"><tt class="docutils literal"><span class="pre">Client</span></tt> objects</a></li>
+<li><a class="reference internal" href="#oeisclient-objects"><tt class="docutils literal"><span class="pre">OEISClient</span></tt> objects</a></li>
 <li><a class="reference internal" href="#sequence-objects"><tt class="docutils literal"><span class="pre">Sequence</span></tt> objects</a><ul>
 <li><a class="reference internal" href="#attributes">Attributes</a></li>
 <li><a class="reference internal" href="#methods">Methods</a></li>
@@ -270,6 +280,9 @@ properly parsed.</p>
   <h4>Previous topic</h4>
   <p class="topless"><a href="introduction.html"
                         title="previous chapter">Introduction</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="usage.html"
+                        title="next chapter">Usage</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/api.txt"
@@ -301,6 +314,9 @@ properly parsed.</p>
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="usage.html" title="Usage"
+             >next</a> |</li>
         <li class="right" >
           <a href="introduction.html" title="Introduction"
              >previous</a> |</li>

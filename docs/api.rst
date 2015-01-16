@@ -1,18 +1,27 @@
 API
 ===   
 
-:class:`Client <client.OEISClient>` objects
--------------------------------------------
+:class:`OEISClient <client.OEISClient>` objects
+-----------------------------------------------
 
 .. autoclass:: client.OEISClient
   :members: lookup_by, lookup_by_keywords, lookup_by_terms
 
   .. method:: get_by_id(id)
   
-    Returns a :class:`Sequence <sequence.Sequence>` for the sequence with the ID *id*, or else 
-    raises :exc:`NoResultsError <errors.NoResultsError>`.
+    Returns a :class:`Sequence <sequence.Sequence>` for the sequence with the
+    ID *id*, or else raises :exc:`NoResultsError <errors.NoResultsError>`.
+
+    .. note::
+
+      On the OEIS website, IDs are displayed with an uppercase letter and 6
+      (for A IDs) or 4 (for M and N IDs) digits. However, this method does not
+      require an uppercase letter or leading zeros to be used.
 
   .. method:: lookup_by_name(name, max_seqs=10)
+
+    Returns a list of at most *max_seqs* :class:`Sequence <sequence.Sequence>` 
+    objects whose names contain *query*.
 
     .. note::
 
@@ -21,8 +30,6 @@ API
       *max_seqs* of 10 and one of 15. This applies to all methods with a
       *max_seqs* argument.
 
-    Returns a list of at most *max_seqs* :class:`Sequence <sequence.Sequence>` 
-    objects whose names contain *query*.
 
   .. method:: lookup_by_author(author, max_seqs=10)
 

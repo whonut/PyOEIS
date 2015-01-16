@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Welcome to pyoeis’s documentation! &mdash; PyOEIS 1.0 documentation</title>
+    <title>Usage &mdash; PyOEIS 1.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -23,8 +23,8 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="PyOEIS 1.0 documentation" href="#" />
-    <link rel="next" title="Introduction" href="introduction.html" /> 
+    <link rel="top" title="PyOEIS 1.0 documentation" href="index.html" />
+    <link rel="prev" title="API" href="api.html" /> 
   </head>
   <body>
     <div class="related">
@@ -37,9 +37,9 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="introduction.html" title="Introduction"
-             accesskey="N">next</a> |</li>
-        <li><a href="#">PyOEIS 1.0 documentation</a> &raquo;</li> 
+          <a href="api.html" title="API"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">PyOEIS 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -48,32 +48,22 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="welcome-to-pyoeis-s-documentation">
-<h1>Welcome to pyoeis&#8217;s documentation!<a class="headerlink" href="#welcome-to-pyoeis-s-documentation" title="Permalink to this headline">¶</a></h1>
-<p>Contents:</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#oeis-search-syntax-and-other-useful-links">OEIS Search Syntax and Other Useful Links</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api.html#oeisclient-objects"><tt class="docutils literal"><span class="pre">OEISClient</span></tt> objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#sequence-objects"><tt class="docutils literal"><span class="pre">Sequence</span></tt> objects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#module-errors"><tt class="docutils literal"><span class="pre">Errors</span></tt></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
-</ul>
+  <div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<p>The first thing you must do when using pyoeis is to initialise an
+<a class="reference internal" href="api.html#client.OEISClient" title="client.OEISClient"><tt class="xref py py-class docutils literal"><span class="pre">OEISClient</span></tt></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyoeis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">pyoeis</span><span class="o">.</span><span class="n">OEISClient</span><span class="p">()</span>
+</pre></div>
 </div>
+<p>This handles all queries to the OEIS and all methods for querying are accessed
+from it. For example, say we want to access the entry for sequence A000040, the
+primes:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">primes</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">get_by_id</span><span class="p">(</span><span class="s">&#39;a40&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">primes</span><span class="o">.</span><span class="n">name</span>
+<span class="go">u&#39;The prime numbers&#39;</span>
+</pre></div>
 </div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
-<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
-<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
-</ul>
 </div>
 
 
@@ -82,18 +72,12 @@
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="#">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Welcome to pyoeis&#8217;s documentation!</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
-</ul>
-
-  <h4>Next topic</h4>
-  <p class="topless"><a href="introduction.html"
-                        title="next chapter">Introduction</a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="api.html"
+                        title="previous chapter">API</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="_sources/index.txt"
+    <li><a href="_sources/usage.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -123,9 +107,9 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="introduction.html" title="Introduction"
-             >next</a> |</li>
-        <li><a href="#">PyOEIS 1.0 documentation</a> &raquo;</li> 
+          <a href="api.html" title="API"
+             >previous</a> |</li>
+        <li><a href="index.html">PyOEIS 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

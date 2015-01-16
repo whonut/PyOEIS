@@ -196,7 +196,10 @@ class OEISClient(object):
             if len(seqs) > max_seqs:
                 seqs = seqs[:max_seqs]
 
-            return seqs
+            if list_func:
+                return seqs
+            else:
+                return seqs[0]
 
         except NoResultsError:
             if list_func:
