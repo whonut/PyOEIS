@@ -1,13 +1,21 @@
-#PyOEIS
+PyOEIS
+======
+
 PyOEIS is a module for interfacing with the [Online Encyclopedia of Integer Sequences](http://oeis.org)
 
-##Installation
+Installation
+------------
+
 TODO
 
-##Documentation
+Documentation
+-------------
+
 TODO
 
-##License
+License
+-------
+
 Copyright 2015 Dylan Evans
 
 Licensed under the Apache License, Version 2.0 (the "License");
