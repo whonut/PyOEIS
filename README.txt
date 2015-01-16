@@ -6,7 +6,9 @@ PyOEIS is a module for interfacing with the [Online Encyclopedia of Integer Sequ
 Installation
 ------------
 
-TODO
+The easiest way to install is with [pip](https://pip.pypa.io/en/latest/).
+
+$ pip install pyoeis
 
 Documentation
 -------------
