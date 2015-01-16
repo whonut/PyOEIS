@@ -58,26 +58,6 @@
 <dd><p>Maintains a <a class="reference external" href="http://docs.python-requests.org/en/latest/api/#requests.Session" title="(in Requests v2.5.1)"><tt class="xref py py-class docutils literal"><span class="pre">Session</span></tt></a> and contains
 all methods for querying the OEIS.</p>
 <dl class="method">
-<dt id="OEISClient.get_by_id">
-<tt class="descname">get_by_id</tt><big>(</big><em>id</em>, <em>max_seqs=10</em><big>)</big><a class="headerlink" href="#OEISClient.get_by_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> for the sequence with the ID <em>id</em>, or else
-raises <a class="reference internal" href="#errors.NoResultsError" title="errors.NoResultsError"><tt class="xref py py-exc docutils literal"><span class="pre">NoResultsError</span></tt></a>.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="OEISClient.lookup_by_name">
-<tt class="descname">lookup_by_name</tt><big>(</big><em>name</em>, <em>max_seqs=10</em><big>)</big><a class="headerlink" href="#OEISClient.lookup_by_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> objects whose names contain
-<em>query</em>.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="OEISClient.lookup_by_author">
-<tt class="descname">lookup_by_author</tt><big>(</big><em>author</em>, <em>max_seqs=10</em><big>)</big><a class="headerlink" href="#OEISClient.lookup_by_author" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> objects whose authors contain <em>query</em>.</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="client.OEISClient.lookup_by">
 <tt class="descname">lookup_by</tt><big>(</big><em>prefix</em>, <em>query</em>, <em>max_seqs=10</em>, <em>list_func=False</em><big>)</big><a class="headerlink" href="#client.OEISClient.lookup_by" title="Permalink to this definition">¶</a></dt>
 <dd><p>If <em>prefix</em> is <cite>&#8220;&#8221;</cite>, search OEIS with string <em>query</em>,
@@ -105,6 +85,26 @@ an empty list. If <em>ordered</em> is false, terms may be in any order. If
 the <em>signed</em> is false, terms may be positive or negative.</p>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="method">
+<dt id="get_by_id">
+<tt class="descname">get_by_id</tt><big>(</big><em>id</em>, <em>max_seqs=10</em><big>)</big><a class="headerlink" href="#get_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> for the sequence with the ID <em>id</em>, or else
+raises <a class="reference internal" href="#errors.NoResultsError" title="errors.NoResultsError"><tt class="xref py py-exc docutils literal"><span class="pre">NoResultsError</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lookup_by_name">
+<tt class="descname">lookup_by_name</tt><big>(</big><em>name</em>, <em>max_seqs=10</em><big>)</big><a class="headerlink" href="#lookup_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> objects whose names contain
+<em>query</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lookup_by_author">
+<tt class="descname">lookup_by_author</tt><big>(</big><em>author</em>, <em>max_seqs=10</em><big>)</big><a class="headerlink" href="#lookup_by_author" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> objects whose authors contain <em>query</em>.</p>
 </dd></dl>
 
 </div>

@@ -7,17 +7,17 @@ API
 .. autoclass:: client.OEISClient
    :members: lookup_by, lookup_by_keywords, lookup_by_terms
 
-   .. py:method:: get_by_id(id, max_seqs=10)
+.. method:: get_by_id(id, max_seqs=10)
 
       Returns a :class:`Sequence <sequence.Sequence>` for the sequence with the ID *id*, or else 
       raises :exc:`NoResultsError <errors.NoResultsError>`.
 
-   .. py:method:: lookup_by_name(name, max_seqs=10)
+.. method:: lookup_by_name(name, max_seqs=10)
 
       Returns a list of :class:`Sequence <sequence.Sequence>` objects whose names contain 
       *query*.
 
-   .. py:method:: lookup_by_author(author, max_seqs=10)
+.. method:: lookup_by_author(author, max_seqs=10)
 
       Returns a list of :class:`Sequence <sequence.Sequence>` objects whose authors contain *query*.
 
