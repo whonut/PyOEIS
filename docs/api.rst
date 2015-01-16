@@ -4,6 +4,8 @@ API
 :class:`Client <client.OEISClient>` objects
 -------------------------------------------
 
+Testing
+
 .. autoclass:: client.OEISClient
    :members: lookup_by, lookup_by_keywords, lookup_by_terms
 
