@@ -4,8 +4,22 @@ API
 :class:`Client <client.OEISClient>` objects
 -------------------------------------------
 
-.. autoclass:: client.OEISClient
+.. autoclass:: OEISClient
    :members: lookup_by, lookup_by_keywords, lookup_by_terms
+
+   .. method:: get_by_id(id, max_seqs=10)
+
+      Returns a :class:`Sequence <sequence.Sequence>` for the sequence with the ID *id*, or else 
+      raises :exc:`NoResultsError <errors.NoResultsError>`.
+
+   .. method:: lookup_by_name(name, max_seqs=10)
+
+      Returns a list of :class:`Sequence <sequence.Sequence>` objects whose names contain 
+      *query*.
+
+   .. method:: lookup_by_author(author, max_seqs=10)
+
+      Returns a list of :class:`Sequence <sequence.Sequence>` objects whose authors contain *query*.
 
 :class:`Sequence <sequence.Sequence>` objects
 ---------------------------------------------
