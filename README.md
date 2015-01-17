@@ -7,7 +7,10 @@ The easiest way to install is with [pip](https://pip.pypa.io/en/latest/).
     $ pip install pyoeis
 
 ##Documentation
-TODO
+Documentation can be found in the following places:
+
+* [Read The Docs](http://pyoeis.readthedocs.org)
+* [Python Hosted](https://pythonhosted.org/pyoeis)
 
 ##License
 Copyright 2015 Dylan Evans

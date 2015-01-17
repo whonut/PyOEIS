@@ -13,7 +13,11 @@ $ pip install pyoeis
 Documentation
 -------------
 
-TODO
+Documentation can be found in the following places:
+
+* Read The Docs - http://pyoeis.readthedocs.org
+* Python Hosted - https://pythonhosted.org/pyoeis
+
 
 License
 -------
