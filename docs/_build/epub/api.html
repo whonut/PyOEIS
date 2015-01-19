@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>API</title>
+    
+    <link rel="stylesheet" href="_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" /> 
+  </head>
+  <body>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="usage.html" title="Usage"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="introduction.html" title="Introduction"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">PyOEIS 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="api">
+<h1>API</h1>
+<div class="section" id="oeisclient-objects">
+<h2><a class="reference internal" href="#client.OEISClient" title="client.OEISClient"><tt class="xref py py-class docutils literal"><span class="pre">OEISClient</span></tt></a> objects</h2>
+<dl class="class">
+<dt id="client.OEISClient">
+<em class="property">class </em><tt class="descclassname">client.</tt><tt class="descname">OEISClient</tt></dt>
+<dd><p>Maintains a <a class="reference external" href="http://docs.python-requests.org/en/latest/api/#requests.Session" title="(in Requests v2.5.1)"><tt class="xref py py-class docutils literal"><span class="pre">Session</span></tt></a><span class="link-target"> [http://docs.python-requests.org/en/latest/api/#requests.Session]</span> and contains
+all methods for querying the OEIS.</p>
+<dl class="method">
+<dt id="OEISClient.get_by_id">
+<tt class="descname">get_by_id</tt><big>(</big><em>id</em><big>)</big></dt>
+<dd><p>Returns a <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> for the sequence with the
+ID <em>id</em>, or else raises <a class="reference internal" href="#errors.NoResultsError" title="errors.NoResultsError"><tt class="xref py py-exc docutils literal"><span class="pre">NoResultsError</span></tt></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">On the OEIS website, IDs are displayed with an uppercase letter and 6
+(for A IDs) or 4 (for M and N IDs) digits. However, this method does not
+require an uppercase letter or leading zeros to be used.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="OEISClient.lookup_by_name">
+<tt class="descname">lookup_by_name</tt><big>(</big><em>name</em>, <em>max_seqs=10</em><big>)</big></dt>
+<dd><p>Returns a list of at most <em>max_seqs</em> <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a>
+objects whose names contain <em>query</em>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Sequences are retrieved in sets of 10 and sequences are then removed if
+necessary. So, there is no speed improvement between, for example, a
+<em>max_seqs</em> of 10 and one of 15. This applies to all methods with a
+<em>max_seqs</em> argument.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="OEISClient.lookup_by_author">
+<tt class="descname">lookup_by_author</tt><big>(</big><em>author</em>, <em>max_seqs=10</em><big>)</big></dt>
+<dd><p>Returns a list of at most <em>max_seqs</em> <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a>
+objects whose authors contain <em>query</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="client.OEISClient.lookup_by">
+<tt class="descname">lookup_by</tt><big>(</big><em>prefix</em>, <em>query</em>, <em>max_seqs=10</em>, <em>list_func=False</em><big>)</big></dt>
+<dd><p>If <em>prefix</em> is <cite>&#8220;&#8221;</cite>, search OEIS with string <em>query</em>,
+otherwise use string &#8216;<em>prefix</em>:<em>query</em>&#8216;.</p>
+<p>If <em>list_func</em> is true, return a list of at most
+<em>max_seqs</em> <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> objects or else an
+empty list if there are no results. If <em>list_func</em> is false, return
+the first Sequence found, or else raise a
+<a class="reference internal" href="#errors.NoResultsError" title="errors.NoResultsError"><tt class="xref py py-exc docutils literal"><span class="pre">NoResultsError</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="client.OEISClient.lookup_by_keywords">
+<tt class="descname">lookup_by_keywords</tt><big>(</big><em>keywords</em><big>)</big></dt>
+<dd><p>Returns a list of at most <em>max_seqs</em>
+<a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> objects which are tagged with
+<em>keywords</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="client.OEISClient.lookup_by_terms">
+<tt class="descname">lookup_by_terms</tt><big>(</big><em>terms</em>, <em>**kwargs</em><big>)</big></dt>
+<dd><p>Returns a list of at most <em>max_seqs</em>
+<a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> objects which contain <em>terms</em>
+anywhere within them. If none exist, returns an empty list. If
+<em>ordered</em> is false, terms may be in any order. If <em>signed</em> is false,
+terms may be positive or negative.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="sequence-objects">
+<h2><a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> objects</h2>
+<div class="section" id="attributes">
+<h3>Attributes</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>id</td>
+<td>The sequence&#8217;s unique ID in the OEIS, as a string. Begins &#8216;A&#8217;.</td>
+</tr>
+<tr class="row-even"><td>alt_ids</td>
+<td>Other IDs, as a list of strings beginning &#8216;M&#8217; and &#8216;N&#8217; which
+the sequence carried in the &#8220;The Encyclopedia of Integer
+Sequences&#8221;, 1995 or the &#8220;Handbook of Integer Sequences&#8221;, 1973,
+respectively.</td>
+</tr>
+<tr class="row-odd"><td>unsigned</td>
+<td>A list of terms in the sequence without any minus signs.</td>
+</tr>
+<tr class="row-even"><td>signed</td>
+<td>A list of terms in the sequence <em>including</em> any minus signs.</td>
+</tr>
+<tr class="row-odd"><td>name</td>
+<td>The name of the sequence, as a string.</td>
+</tr>
+<tr class="row-even"><td>references</td>
+<td>A list of references to the sequence.</td>
+</tr>
+<tr class="row-odd"><td>links</td>
+<td>A list of links about the sequence.</td>
+</tr>
+<tr class="row-even"><td>formulae</td>
+<td>Formulae for generating the sequence, as a list of strings.</td>
+</tr>
+<tr class="row-odd"><td>cross_references</td>
+<td>Cross-references to the sequence from elsewhere in the OEIS,
+as a list of strings.</td>
+</tr>
+<tr class="row-even"><td>author</td>
+<td>The author of the sequence entry, as a string.</td>
+</tr>
+<tr class="row-odd"><td>offset</td>
+<td>The subscript of the first term and the position of the first
+term whose modulus exceeds 1, as a tuple of two numbers.</td>
+</tr>
+<tr class="row-even"><td>errors</td>
+<td>Errors in the sequence entry, as a list of strings.</td>
+</tr>
+<tr class="row-odd"><td>examples</td>
+<td>Examples to illustrate the sequence, as a list of strings.</td>
+</tr>
+<tr class="row-even"><td>maple</td>
+<td>Maple code to generate the sequence, as a string.</td>
+</tr>
+<tr class="row-odd"><td>mathematica</td>
+<td>Mathematica code to generate the sequence, as a string.</td>
+</tr>
+<tr class="row-even"><td>other_programs</td>
+<td>Code to generate the sequence in other programs/languages, as
+a list of strings.</td>
+</tr>
+<tr class="row-odd"><td>keywords</td>
+<td>The sequence&#8217;s keywords, as a list of strings.</td>
+</tr>
+<tr class="row-even"><td>comments</td>
+<td>Comments on the sequence entry, as a list of strings.</td>
+</tr>
+</tbody>
+</table>
+<p>More information about the fields in a sequence entry can be found <a class="reference external" href="http://oeis.org/eishelp2.html">here</a><span class="link-target"> [http://oeis.org/eishelp2.html]</span>.</p>
+</div>
+<div class="section" id="methods">
+<h3>Methods</h3>
+<dl class="class">
+<dt id="sequence.Sequence">
+<em class="property">class </em><tt class="descclassname">sequence.</tt><tt class="descname">Sequence</tt></dt>
+<dd><p>Has attributes to contain information for each field of a sequence entry
+in the OEIS and methods fot retrieving a certain number of the
+sequence&#8217;s signed or unsigned terms.</p>
+<dl class="method">
+<dt id="sequence.Sequence.signed">
+<tt class="descname">signed</tt><big>(</big><em>n</em><big>)</big></dt>
+<dd><p>Returns the first <em>n</em> signed integers in the sequence.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sequence.Sequence.unsigned">
+<tt class="descname">unsigned</tt><big>(</big><em>n</em><big>)</big></dt>
+<dd><p>Returns the first <em>n</em> unsigned integers in the sequence.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-errors">
+<span id="errors"></span><h2><a class="reference internal" href="#module-errors" title="errors"><tt class="xref py py-mod docutils literal"><span class="pre">Errors</span></tt></a></h2>
+<dl class="exception">
+<dt id="errors.InvalidQueryError">
+<em class="property">exception </em><tt class="descclassname">errors.</tt><tt class="descname">InvalidQueryError</tt><big>(</big><em>response</em><big>)</big></dt>
+<dd><p>Raised when a search is invalid according to the OEIS search syntax.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="errors.NoResultsError">
+<em class="property">exception </em><tt class="descclassname">errors.</tt><tt class="descname">NoResultsError</tt><big>(</big><em>query</em><big>)</big></dt>
+<dd><p>Raised when a search gives no results and it is unacceptable to return
+an empty list.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="errors.OEISException">
+<em class="property">exception </em><tt class="descclassname">errors.</tt><tt class="descname">OEISException</tt></dt>
+<dd><p>Base class for PyOEIS exceptions.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="errors.TooManyResultsError">
+<em class="property">exception </em><tt class="descclassname">errors.</tt><tt class="descname">TooManyResultsError</tt><big>(</big><em>query</em><big>)</big></dt>
+<dd><p>Raised when too many results are found for a search for them to be
+properly parsed.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2015, Dylan Evans.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

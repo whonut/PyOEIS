@@ -14,7 +14,7 @@
 
 
 \title{PyOEIS Documentation}
-\date{January 16, 2015}
+\date{January 17, 2015}
 \release{1.0}
 \author{Dylan Evans}
 \newcommand{\sphinxlogo}{}
@@ -161,8 +161,8 @@ may therefore be of use:
 \chapter{API}
 \label{api:api}\label{api::doc}
 
-\section{\texttt{Client} objects}
-\label{api:client-objects}\index{OEISClient (class in client)}
+\section{\texttt{OEISClient} objects}
+\label{api:oeisclient-objects}\index{OEISClient (class in client)}
 
 \begin{fulllineitems}
 \phantomsection\label{api:client.OEISClient}\pysigline{\strong{class }\code{client.}\bfcode{OEISClient}}
@@ -172,24 +172,30 @@ all methods for querying the OEIS.
 
 \begin{fulllineitems}
 \phantomsection\label{api:OEISClient.get_by_id}\pysiglinewithargsret{\bfcode{get\_by\_id}}{\emph{id}}{}
-Returns a {\hyperref[api:sequence.Sequence]{\code{Sequence}}} for the sequence with the ID \emph{id}, or else
-raises {\hyperref[api:errors.NoResultsError]{\code{NoResultsError}}}.
+Returns a {\hyperref[api:sequence.Sequence]{\code{Sequence}}} for the sequence with the
+ID \emph{id}, or else raises {\hyperref[api:errors.NoResultsError]{\code{NoResultsError}}}.
+
+\begin{notice}{note}{Note:}
+On the OEIS website, IDs are displayed with an uppercase letter and 6
+(for A IDs) or 4 (for M and N IDs) digits. However, this method does not
+require an uppercase letter or leading zeros to be used.
+\end{notice}
 
 \end{fulllineitems}
 
 \index{lookup\_by\_name() (OEISClient method)}
 
 \begin{fulllineitems}
-\phantomsection\label{api:OEISClient.lookup_by_name}\pysiglinewithargsret{\bfcode{lookup\_by\_name}}{\emph{name}, \emph{max\_seqs=10}}{}~
+\phantomsection\label{api:OEISClient.lookup_by_name}\pysiglinewithargsret{\bfcode{lookup\_by\_name}}{\emph{name}, \emph{max\_seqs=10}}{}
+Returns a list of at most \emph{max\_seqs} {\hyperref[api:sequence.Sequence]{\code{Sequence}}}
+objects whose names contain \emph{query}.
+
 \begin{notice}{note}{Note:}
 Sequences are retrieved in sets of 10 and sequences are then removed if
 necessary. So, there is no speed improvement between, for example, a
 \emph{max\_seqs} of 10 and one of 15. This applies to all methods with a
 \emph{max\_seqs} argument.
 \end{notice}
-
-Returns a list of at most \emph{max\_seqs} {\hyperref[api:sequence.Sequence]{\code{Sequence}}}
-objects whose names contain \emph{query}.
 
 \end{fulllineitems}
 
@@ -417,6 +423,27 @@ properly parsed.
 
 \end{fulllineitems}
 
+
+
+\chapter{Usage}
+\label{usage:usage}\label{usage::doc}
+The first thing you must do when using pyoeis is to initialise an
+{\hyperref[api:client.OEISClient]{\code{OEISClient}}}:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{k+kn}{import} \PYG{n+nn}{pyoeis}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{c} \PYG{o}{=} \PYG{n}{pyoeis}\PYG{o}{.}\PYG{n}{OEISClient}\PYG{p}{(}\PYG{p}{)}
+\end{Verbatim}
+
+This handles all queries to the OEIS and all methods for querying are accessed
+from it. For example, say we want to access the entry for sequence A000040, the
+primes:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{primes} \PYG{o}{=} \PYG{n}{c}\PYG{o}{.}\PYG{n}{get\PYGZus{}by\PYGZus{}id}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{a40}\PYG{l+s}{\PYGZsq{}}\PYG{p}{)}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{primes}\PYG{o}{.}\PYG{n}{name}
+\PYG{g+go}{u\PYGZsq{}The prime numbers\PYGZsq{}}
+\end{Verbatim}
 
 
 \chapter{Indices and tables}

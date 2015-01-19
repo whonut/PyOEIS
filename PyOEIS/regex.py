@@ -4,7 +4,7 @@ import re
 id = re.compile(ur'^%I (A\d+) ?([MN]\d+)? ?([MN]\d+)?', re.M)
 unsigned = re.compile(ur'^%[STU] A\d+ ((?:\d+,?)*)', re.M)
 signed = re.compile(ur'^%[VWX] A\d+ ((?:-?\d+,?)*)', re.M)
-name = re.compile(ur'^%N A\d+ ([^.]+)', re.M)
+name = re.compile(ur'^%N A\d+ ([^.:]+)', re.M)
 reference = re.compile(ur'^%D A\d+ (.+).?', re.M)
 link = re.compile(ur'^%H A\d+ (.*)<a href="(.*)">(.*)</a>(.*)', re.M)
 formula = re.compile(ur'^%F A\d+ (.+)', re.M)

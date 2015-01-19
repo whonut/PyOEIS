@@ -2,7 +2,7 @@
 <ncx version="2005-1" xmlns="http://www.daisy.org/z3986/2005/ncx/">
   <head>
     <meta name="dtb:uid" content="unknown"/>
-    <meta name="dtb:depth" content="1"/>
+    <meta name="dtb:depth" content="3"/>
     <meta name="dtb:totalPageCount" content="0"/>
     <meta name="dtb:maxPageNumber" content="0"/>
   </head>
@@ -12,9 +12,81 @@
   <navMap>
     <navPoint id="navPoint1" playOrder="1">
       <navLabel>
-        <text>Welcome to PyOEIS&#39;s documentation!</text>
+        <text>Welcome to pyoeis&#39;s documentation!</text>
       </navLabel>
       <content src="index.html" />
+    </navPoint>
+    <navPoint id="navPoint2" playOrder="2">
+      <navLabel>
+        <text>Introduction</text>
+      </navLabel>
+      <content src="introduction.html" />
+      <navPoint id="navPoint3" playOrder="2">
+        <navLabel>
+          <text>Introduction</text>
+        </navLabel>
+        <content src="introduction.html" />
+      </navPoint>
+      <navPoint id="navPoint4" playOrder="3">
+        <navLabel>
+          <text>OEIS Search Syntax and Other Useful Links</text>
+        </navLabel>
+        <content src="introduction.html#oeis-search-syntax-and-other-useful-links" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint5" playOrder="4">
+      <navLabel>
+        <text>API</text>
+      </navLabel>
+      <content src="api.html" />
+      <navPoint id="navPoint6" playOrder="4">
+        <navLabel>
+          <text>API</text>
+        </navLabel>
+        <content src="api.html" />
+      </navPoint>
+      <navPoint id="navPoint7" playOrder="5">
+        <navLabel>
+          <text>OEISClient objects</text>
+        </navLabel>
+        <content src="api.html#oeisclient-objects" />
+      </navPoint>
+      <navPoint id="navPoint8" playOrder="6">
+        <navLabel>
+          <text>Sequence objects</text>
+        </navLabel>
+        <content src="api.html#sequence-objects" />
+        <navPoint id="navPoint9" playOrder="6">
+          <navLabel>
+            <text>Sequence objects</text>
+          </navLabel>
+          <content src="api.html#sequence-objects" />
+        </navPoint>
+        <navPoint id="navPoint10" playOrder="7">
+          <navLabel>
+            <text>Attributes</text>
+          </navLabel>
+          <content src="api.html#attributes" />
+        </navPoint>
+        <navPoint id="navPoint11" playOrder="8">
+          <navLabel>
+            <text>Methods</text>
+          </navLabel>
+          <content src="api.html#methods" />
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint12" playOrder="9">
+        <navLabel>
+          <text>Errors</text>
+        </navLabel>
+        <content src="api.html#module-errors" />
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint13" playOrder="10">
+      <navLabel>
+        <text>Usage</text>
+      </navLabel>
+      <content src="usage.html" />
     </navPoint>
   </navMap>
 </ncx>
