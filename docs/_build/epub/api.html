@@ -62,7 +62,7 @@ require an uppercase letter or leading zeros to be used.</p>
 <dt id="OEISClient.lookup_by_name">
 <code class="descname">lookup_by_name</code><span class="sig-paren">(</span><em>name</em>, <em>max_seqs=10</em><span class="sig-paren">)</span></dt>
 <dd><p>Returns a list of at most <em>max_seqs</em> <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><code class="xref py py-class docutils literal"><span class="pre">Sequence</span></code></a>
-objects whose names contain <em>query</em>.</p>
+objects whose names contain <em>name</em>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Sequences are retrieved in sets of 10 and sequences are then removed if
@@ -76,7 +76,7 @@ necessary. So, there is no speed improvement between, for example, a
 <dt id="OEISClient.lookup_by_author">
 <code class="descname">lookup_by_author</code><span class="sig-paren">(</span><em>author</em>, <em>max_seqs=10</em><span class="sig-paren">)</span></dt>
 <dd><p>Returns a list of at most <em>max_seqs</em> <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><code class="xref py py-class docutils literal"><span class="pre">Sequence</span></code></a>
-objects whose authors contain <em>query</em>.</p>
+objects whose authors contain <em>author</em>.</p>
 </dd></dl>
 
 <dl class="method">
@@ -131,10 +131,10 @@ the sequence carried in the &#8220;The Encyclopedia of Integer
 Sequences&#8221;, 1995 or the &#8220;Handbook of Integer Sequences&#8221;, 1973,
 respectively.</td>
 </tr>
-<tr class="row-odd"><td>unsigned</td>
+<tr class="row-odd"><td>unsigned_list</td>
 <td>A list of terms in the sequence without any minus signs.</td>
 </tr>
-<tr class="row-even"><td>signed</td>
+<tr class="row-even"><td>signed_list</td>
 <td>A list of terms in the sequence <em>including</em> any minus signs.</td>
 </tr>
 <tr class="row-odd"><td>name</td>

@@ -193,7 +193,7 @@ require an uppercase letter or leading zeros to be used.
 \begin{fulllineitems}
 \phantomsection\label{api:OEISClient.lookup_by_name}\pysiglinewithargsret{\bfcode{lookup\_by\_name}}{\emph{name}, \emph{max\_seqs=10}}{}
 Returns a list of at most \emph{max\_seqs} {\hyperref[api:sequence.Sequence]{\emph{\code{Sequence}}}}
-objects whose names contain \emph{query}.
+objects whose names contain \emph{name}.
 
 \begin{notice}{note}{Note:}
 Sequences are retrieved in sets of 10 and sequences are then removed if
@@ -209,7 +209,7 @@ necessary. So, there is no speed improvement between, for example, a
 \begin{fulllineitems}
 \phantomsection\label{api:OEISClient.lookup_by_author}\pysiglinewithargsret{\bfcode{lookup\_by\_author}}{\emph{author}, \emph{max\_seqs=10}}{}
 Returns a list of at most \emph{max\_seqs} {\hyperref[api:sequence.Sequence]{\emph{\code{Sequence}}}}
-objects whose authors contain \emph{query}.
+objects whose authors contain \emph{author}.
 
 \end{fulllineitems}
 
@@ -276,12 +276,12 @@ Sequences'', 1995 or the ``Handbook of Integer Sequences'', 1973,
 respectively.
 \\
 \hline
-unsigned
+unsigned\_list
  & 
 A list of terms in the sequence without any minus signs.
 \\
 \hline
-signed
+signed\_list
  & 
 A list of terms in the sequence \emph{including} any minus signs.
 \\

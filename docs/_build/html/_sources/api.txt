@@ -21,7 +21,7 @@ API
   .. method:: lookup_by_name(name, max_seqs=10)
 
     Returns a list of at most *max_seqs* :class:`Sequence <sequence.Sequence>` 
-    objects whose names contain *query*.
+    objects whose names contain *name*.
 
     .. note::
 
@@ -34,7 +34,7 @@ API
   .. method:: lookup_by_author(author, max_seqs=10)
 
      Returns a list of at most *max_seqs* :class:`Sequence <sequence.Sequence>`
-     objects whose authors contain *query*.
+     objects whose authors contain *author*.
   
 :class:`Sequence <sequence.Sequence>` objects
 ---------------------------------------------
@@ -48,8 +48,8 @@ alt_ids          Other IDs, as a list of strings beginning 'M' and 'N' which
                  the sequence carried in the "The Encyclopedia of Integer
                  Sequences", 1995 or the "Handbook of Integer Sequences", 1973,
                  respectively.
-unsigned         A list of terms in the sequence without any minus signs.
-signed           A list of terms in the sequence *including* any minus signs.
+unsigned_list    A list of terms in the sequence without any minus signs.
+signed_list      A list of terms in the sequence *including* any minus signs.
 name             The name of the sequence, as a string.
 references       A list of references to the sequence.
 links            A list of links about the sequence.
