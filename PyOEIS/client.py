@@ -46,13 +46,13 @@ class OEISClient(object):
         # parse %S, %T and %U
         unsigned_findall = regex.unsigned.findall(sequence_entry)
         unsigned_strs = helpers.parse_comma_separated_findall(unsigned_findall)
-        s.unsigned = map(int, unsigned_strs)
+        s.unsigned_list = map(int, unsigned_strs)
 
         # parse %V, %W and %X
         try:
             signed_findall = regex.signed.findall(sequence_entry)
             signed_strs = helpers.parse_comma_separated_findall(signed_findall)
-            s.signed = map(int, signed_strs)
+            s.signed_list = map(int, signed_strs)
         except AttributeError:
             pass
 
