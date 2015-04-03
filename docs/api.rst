@@ -48,8 +48,8 @@ alt_ids          Other IDs, as a list of strings beginning 'M' and 'N' which
                  the sequence carried in the "The Encyclopedia of Integer
                  Sequences", 1995 or the "Handbook of Integer Sequences", 1973,
                  respectively.
-unsigned         A list of terms in the sequence without any minus signs.
-signed           A list of terms in the sequence *including* any minus signs.
+unsigned_list    A list of terms in the sequence without any minus signs.
+signed_list      A list of terms in the sequence *including* any minus signs.
 name             The name of the sequence, as a string.
 references       A list of references to the sequence.
 links            A list of links about the sequence.

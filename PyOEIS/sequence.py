@@ -6,8 +6,8 @@ class Sequence(object):
     def __init__(self):
         self.id = None
         self.alt_ids = []
-        self.unsigned = []
-        self.signed = []
+        self.unsigned_list = []
+        self.signed_list = []
         self.name = None
         self.references = []
         self.links = []
@@ -28,8 +28,8 @@ class Sequence(object):
 
     def unsigned(self, n):
         '''Returns the first *n* unsigned integers in the sequence.'''
-        return self.unsigned[:n]
+        return self.unsigned_list[:n]
 
     def signed(self, n):
         '''Returns the first *n* signed integers in the sequence.'''
-        return self.signed[:n]
+        return self.signed_list[:n]
