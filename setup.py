@@ -27,7 +27,6 @@ setup(
                  'Intended Audience :: Developers',
                  'Topic :: Scientific/Engineering :: Mathematics',
                  'Operating System :: OS Independent',
-                 'Programming Language :: Python :: 2',
-                 'Programming Language :: Python :: 2'],
+                 'Programming Language :: Python'],
     **extra
     )
