@@ -12,9 +12,14 @@
 \usepackage{sphinx}
 \usepackage{multirow}
 
+\addto\captionsenglish{\renewcommand{\figurename}{Fig. }}
+\addto\captionsenglish{\renewcommand{\tablename}{Table }}
+\floatname{literal-block}{Listing }
+
+
 
 \title{PyOEIS Documentation}
-\date{January 17, 2015}
+\date{April 03, 2015}
 \release{1.0}
 \author{Dylan Evans}
 \newcommand{\sphinxlogo}{}
@@ -135,7 +140,7 @@ the primes and Fibonacci numbers as well as many more obscure sequences.
 
 PyOEIS allows for the searching of the OEIS from within Python, as well as
 allowing you to access sequence information through
-{\hyperref[api:sequence.Sequence]{\code{Sequence}}} objects.
+{\hyperref[api:sequence.Sequence]{\emph{\code{Sequence}}}} objects.
 
 
 \section{OEIS Search Syntax and Other Useful Links}
@@ -172,8 +177,8 @@ all methods for querying the OEIS.
 
 \begin{fulllineitems}
 \phantomsection\label{api:OEISClient.get_by_id}\pysiglinewithargsret{\bfcode{get\_by\_id}}{\emph{id}}{}
-Returns a {\hyperref[api:sequence.Sequence]{\code{Sequence}}} for the sequence with the
-ID \emph{id}, or else raises {\hyperref[api:errors.NoResultsError]{\code{NoResultsError}}}.
+Returns a {\hyperref[api:sequence.Sequence]{\emph{\code{Sequence}}}} for the sequence with the
+ID \emph{id}, or else raises {\hyperref[api:errors.NoResultsError]{\emph{\code{NoResultsError}}}}.
 
 \begin{notice}{note}{Note:}
 On the OEIS website, IDs are displayed with an uppercase letter and 6
@@ -187,7 +192,7 @@ require an uppercase letter or leading zeros to be used.
 
 \begin{fulllineitems}
 \phantomsection\label{api:OEISClient.lookup_by_name}\pysiglinewithargsret{\bfcode{lookup\_by\_name}}{\emph{name}, \emph{max\_seqs=10}}{}
-Returns a list of at most \emph{max\_seqs} {\hyperref[api:sequence.Sequence]{\code{Sequence}}}
+Returns a list of at most \emph{max\_seqs} {\hyperref[api:sequence.Sequence]{\emph{\code{Sequence}}}}
 objects whose names contain \emph{query}.
 
 \begin{notice}{note}{Note:}
@@ -203,7 +208,7 @@ necessary. So, there is no speed improvement between, for example, a
 
 \begin{fulllineitems}
 \phantomsection\label{api:OEISClient.lookup_by_author}\pysiglinewithargsret{\bfcode{lookup\_by\_author}}{\emph{author}, \emph{max\_seqs=10}}{}
-Returns a list of at most \emph{max\_seqs} {\hyperref[api:sequence.Sequence]{\code{Sequence}}}
+Returns a list of at most \emph{max\_seqs} {\hyperref[api:sequence.Sequence]{\emph{\code{Sequence}}}}
 objects whose authors contain \emph{query}.
 
 \end{fulllineitems}
@@ -216,10 +221,10 @@ If \emph{prefix} is \emph{``''}, search OEIS with string \emph{query},
 otherwise use string `\emph{prefix}:\emph{query}`.
 
 If \emph{list\_func} is true, return a list of at most
-\emph{max\_seqs} {\hyperref[api:sequence.Sequence]{\code{Sequence}}} objects or else an
+\emph{max\_seqs} {\hyperref[api:sequence.Sequence]{\emph{\code{Sequence}}}} objects or else an
 empty list if there are no results. If \emph{list\_func} is false, return
 the first Sequence found, or else raise a
-{\hyperref[api:errors.NoResultsError]{\code{NoResultsError}}}.
+{\hyperref[api:errors.NoResultsError]{\emph{\code{NoResultsError}}}}.
 
 \end{fulllineitems}
 
@@ -228,7 +233,7 @@ the first Sequence found, or else raise a
 \begin{fulllineitems}
 \phantomsection\label{api:client.OEISClient.lookup_by_keywords}\pysiglinewithargsret{\bfcode{lookup\_by\_keywords}}{\emph{keywords}}{}
 Returns a list of at most \emph{max\_seqs}
-{\hyperref[api:sequence.Sequence]{\code{Sequence}}} objects which are tagged with
+{\hyperref[api:sequence.Sequence]{\emph{\code{Sequence}}}} objects which are tagged with
 \emph{keywords}.
 
 \end{fulllineitems}
@@ -238,7 +243,7 @@ Returns a list of at most \emph{max\_seqs}
 \begin{fulllineitems}
 \phantomsection\label{api:client.OEISClient.lookup_by_terms}\pysiglinewithargsret{\bfcode{lookup\_by\_terms}}{\emph{terms}, \emph{**kwargs}}{}
 Returns a list of at most \emph{max\_seqs}
-{\hyperref[api:sequence.Sequence]{\code{Sequence}}} objects which contain \emph{terms}
+{\hyperref[api:sequence.Sequence]{\emph{\code{Sequence}}}} objects which contain \emph{terms}
 anywhere within them. If none exist, returns an empty list. If
 \emph{ordered} is false, terms may be in any order. If \emph{signed} is false,
 terms may be positive or negative.
@@ -262,7 +267,7 @@ id
  & 
 The sequence's unique ID in the OEIS, as a string. Begins `A'.
 \\
-
+\hline
 alt\_ids
  & 
 Other IDs, as a list of strings beginning `M' and `N' which
@@ -270,85 +275,85 @@ the sequence carried in the ``The Encyclopedia of Integer
 Sequences'', 1995 or the ``Handbook of Integer Sequences'', 1973,
 respectively.
 \\
-
+\hline
 unsigned
  & 
 A list of terms in the sequence without any minus signs.
 \\
-
+\hline
 signed
  & 
 A list of terms in the sequence \emph{including} any minus signs.
 \\
-
+\hline
 name
  & 
 The name of the sequence, as a string.
 \\
-
+\hline
 references
  & 
 A list of references to the sequence.
 \\
-
+\hline
 links
  & 
 A list of links about the sequence.
 \\
-
+\hline
 formulae
  & 
 Formulae for generating the sequence, as a list of strings.
 \\
-
+\hline
 cross\_references
  & 
 Cross-references to the sequence from elsewhere in the OEIS,
 as a list of strings.
 \\
-
+\hline
 author
  & 
 The author of the sequence entry, as a string.
 \\
-
+\hline
 offset
  & 
 The subscript of the first term and the position of the first
 term whose modulus exceeds 1, as a tuple of two numbers.
 \\
-
+\hline
 errors
  & 
 Errors in the sequence entry, as a list of strings.
 \\
-
+\hline
 examples
  & 
 Examples to illustrate the sequence, as a list of strings.
 \\
-
+\hline
 maple
  & 
 Maple code to generate the sequence, as a string.
 \\
-
+\hline
 mathematica
  & 
 Mathematica code to generate the sequence, as a string.
 \\
-
+\hline
 other\_programs
  & 
 Code to generate the sequence in other programs/languages, as
 a list of strings.
 \\
-
+\hline
 keywords
  & 
 The sequence's keywords, as a list of strings.
 \\
-
+\hline
 comments
  & 
 Comments on the sequence entry, as a list of strings.
@@ -428,7 +433,7 @@ properly parsed.
 \chapter{Usage}
 \label{usage:usage}\label{usage::doc}
 The first thing you must do when using pyoeis is to initialise an
-{\hyperref[api:client.OEISClient]{\code{OEISClient}}}:
+{\hyperref[api:client.OEISClient]{\emph{\code{OEISClient}}}}:
 
 \begin{Verbatim}[commandchars=\\\{\}]
 \PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{k+kn}{import} \PYG{n+nn}{pyoeis}
@@ -449,13 +454,13 @@ primes:
 \chapter{Indices and tables}
 \label{index:indices-and-tables}\begin{itemize}
 \item {} 
-\emph{genindex}
+\DUspan{xref,std,std-ref}{genindex}
 
 \item {} 
-\emph{modindex}
+\DUspan{xref,std,std-ref}{modindex}
 
 \item {} 
-\emph{search}
+\DUspan{xref,std,std-ref}{search}
 
 \end{itemize}
 

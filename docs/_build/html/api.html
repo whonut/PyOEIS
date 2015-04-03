@@ -8,7 +8,7 @@
     
     <title>API &mdash; PyOEIS 1.0 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -27,8 +27,8 @@
     <link rel="next" title="Usage" href="usage.html" />
     <link rel="prev" title="Introduction" href="introduction.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -43,29 +43,29 @@
         <li class="right" >
           <a href="introduction.html" title="Introduction"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">PyOEIS 1.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyOEIS 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="api">
 <h1>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="oeisclient-objects">
-<h2><a class="reference internal" href="#client.OEISClient" title="client.OEISClient"><tt class="xref py py-class docutils literal"><span class="pre">OEISClient</span></tt></a> objects<a class="headerlink" href="#oeisclient-objects" title="Permalink to this headline">¶</a></h2>
+<h2><a class="reference internal" href="#client.OEISClient" title="client.OEISClient"><code class="xref py py-class docutils literal"><span class="pre">OEISClient</span></code></a> objects<a class="headerlink" href="#oeisclient-objects" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="client.OEISClient">
-<em class="property">class </em><tt class="descclassname">client.</tt><tt class="descname">OEISClient</tt><a class="headerlink" href="#client.OEISClient" title="Permalink to this definition">¶</a></dt>
-<dd><p>Maintains a <a class="reference external" href="http://docs.python-requests.org/en/latest/api/#requests.Session" title="(in Requests v2.5.1)"><tt class="xref py py-class docutils literal"><span class="pre">Session</span></tt></a> and contains
+<em class="property">class </em><code class="descclassname">client.</code><code class="descname">OEISClient</code><a class="headerlink" href="#client.OEISClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maintains a <a class="reference external" href="http://docs.python-requests.org/en/latest/api/#requests.Session" title="(in Requests v2.6.0)"><code class="xref py py-class docutils literal"><span class="pre">Session</span></code></a> and contains
 all methods for querying the OEIS.</p>
 <dl class="method">
 <dt id="OEISClient.get_by_id">
-<tt class="descname">get_by_id</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#OEISClient.get_by_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> for the sequence with the
-ID <em>id</em>, or else raises <a class="reference internal" href="#errors.NoResultsError" title="errors.NoResultsError"><tt class="xref py py-exc docutils literal"><span class="pre">NoResultsError</span></tt></a>.</p>
+<code class="descname">get_by_id</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#OEISClient.get_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><code class="xref py py-class docutils literal"><span class="pre">Sequence</span></code></a> for the sequence with the
+ID <em>id</em>, or else raises <a class="reference internal" href="#errors.NoResultsError" title="errors.NoResultsError"><code class="xref py py-exc docutils literal"><span class="pre">NoResultsError</span></code></a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">On the OEIS website, IDs are displayed with an uppercase letter and 6
@@ -76,8 +76,8 @@ require an uppercase letter or leading zeros to be used.</p>
 
 <dl class="method">
 <dt id="OEISClient.lookup_by_name">
-<tt class="descname">lookup_by_name</tt><big>(</big><em>name</em>, <em>max_seqs=10</em><big>)</big><a class="headerlink" href="#OEISClient.lookup_by_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of at most <em>max_seqs</em> <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a>
+<code class="descname">lookup_by_name</code><span class="sig-paren">(</span><em>name</em>, <em>max_seqs=10</em><span class="sig-paren">)</span><a class="headerlink" href="#OEISClient.lookup_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of at most <em>max_seqs</em> <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><code class="xref py py-class docutils literal"><span class="pre">Sequence</span></code></a>
 objects whose names contain <em>query</em>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -90,36 +90,36 @@ necessary. So, there is no speed improvement between, for example, a
 
 <dl class="method">
 <dt id="OEISClient.lookup_by_author">
-<tt class="descname">lookup_by_author</tt><big>(</big><em>author</em>, <em>max_seqs=10</em><big>)</big><a class="headerlink" href="#OEISClient.lookup_by_author" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of at most <em>max_seqs</em> <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a>
+<code class="descname">lookup_by_author</code><span class="sig-paren">(</span><em>author</em>, <em>max_seqs=10</em><span class="sig-paren">)</span><a class="headerlink" href="#OEISClient.lookup_by_author" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of at most <em>max_seqs</em> <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><code class="xref py py-class docutils literal"><span class="pre">Sequence</span></code></a>
 objects whose authors contain <em>query</em>.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="client.OEISClient.lookup_by">
-<tt class="descname">lookup_by</tt><big>(</big><em>prefix</em>, <em>query</em>, <em>max_seqs=10</em>, <em>list_func=False</em><big>)</big><a class="headerlink" href="#client.OEISClient.lookup_by" title="Permalink to this definition">¶</a></dt>
+<code class="descname">lookup_by</code><span class="sig-paren">(</span><em>prefix</em>, <em>query</em>, <em>max_seqs=10</em>, <em>list_func=False</em><span class="sig-paren">)</span><a class="headerlink" href="#client.OEISClient.lookup_by" title="Permalink to this definition">¶</a></dt>
 <dd><p>If <em>prefix</em> is <cite>&#8220;&#8221;</cite>, search OEIS with string <em>query</em>,
 otherwise use string &#8216;<em>prefix</em>:<em>query</em>&#8216;.</p>
 <p>If <em>list_func</em> is true, return a list of at most
-<em>max_seqs</em> <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> objects or else an
+<em>max_seqs</em> <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><code class="xref py py-class docutils literal"><span class="pre">Sequence</span></code></a> objects or else an
 empty list if there are no results. If <em>list_func</em> is false, return
 the first Sequence found, or else raise a
-<a class="reference internal" href="#errors.NoResultsError" title="errors.NoResultsError"><tt class="xref py py-exc docutils literal"><span class="pre">NoResultsError</span></tt></a>.</p>
+<a class="reference internal" href="#errors.NoResultsError" title="errors.NoResultsError"><code class="xref py py-exc docutils literal"><span class="pre">NoResultsError</span></code></a>.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="client.OEISClient.lookup_by_keywords">
-<tt class="descname">lookup_by_keywords</tt><big>(</big><em>keywords</em><big>)</big><a class="headerlink" href="#client.OEISClient.lookup_by_keywords" title="Permalink to this definition">¶</a></dt>
+<code class="descname">lookup_by_keywords</code><span class="sig-paren">(</span><em>keywords</em><span class="sig-paren">)</span><a class="headerlink" href="#client.OEISClient.lookup_by_keywords" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of at most <em>max_seqs</em>
-<a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> objects which are tagged with
+<a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><code class="xref py py-class docutils literal"><span class="pre">Sequence</span></code></a> objects which are tagged with
 <em>keywords</em>.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="client.OEISClient.lookup_by_terms">
-<tt class="descname">lookup_by_terms</tt><big>(</big><em>terms</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#client.OEISClient.lookup_by_terms" title="Permalink to this definition">¶</a></dt>
+<code class="descname">lookup_by_terms</code><span class="sig-paren">(</span><em>terms</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#client.OEISClient.lookup_by_terms" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of at most <em>max_seqs</em>
-<a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> objects which contain <em>terms</em>
+<a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><code class="xref py py-class docutils literal"><span class="pre">Sequence</span></code></a> objects which contain <em>terms</em>
 anywhere within them. If none exist, returns an empty list. If
 <em>ordered</em> is false, terms may be in any order. If <em>signed</em> is false,
 terms may be positive or negative.</p>
@@ -129,7 +129,7 @@ terms may be positive or negative.</p>
 
 </div>
 <div class="section" id="sequence-objects">
-<h2><a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><tt class="xref py py-class docutils literal"><span class="pre">Sequence</span></tt></a> objects<a class="headerlink" href="#sequence-objects" title="Permalink to this headline">¶</a></h2>
+<h2><a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><code class="xref py py-class docutils literal"><span class="pre">Sequence</span></code></a> objects<a class="headerlink" href="#sequence-objects" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="attributes">
 <h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
@@ -206,19 +206,19 @@ a list of strings.</td>
 <h3>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="sequence.Sequence">
-<em class="property">class </em><tt class="descclassname">sequence.</tt><tt class="descname">Sequence</tt><a class="headerlink" href="#sequence.Sequence" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">sequence.</code><code class="descname">Sequence</code><a class="headerlink" href="#sequence.Sequence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Has attributes to contain information for each field of a sequence entry
 in the OEIS and methods fot retrieving a certain number of the
 sequence&#8217;s signed or unsigned terms.</p>
 <dl class="method">
 <dt id="sequence.Sequence.signed">
-<tt class="descname">signed</tt><big>(</big><em>n</em><big>)</big><a class="headerlink" href="#sequence.Sequence.signed" title="Permalink to this definition">¶</a></dt>
+<code class="descname">signed</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#sequence.Sequence.signed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the first <em>n</em> signed integers in the sequence.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="sequence.Sequence.unsigned">
-<tt class="descname">unsigned</tt><big>(</big><em>n</em><big>)</big><a class="headerlink" href="#sequence.Sequence.unsigned" title="Permalink to this definition">¶</a></dt>
+<code class="descname">unsigned</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#sequence.Sequence.unsigned" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the first <em>n</em> unsigned integers in the sequence.</p>
 </dd></dl>
 
@@ -227,29 +227,29 @@ sequence&#8217;s signed or unsigned terms.</p>
 </div>
 </div>
 <div class="section" id="module-errors">
-<span id="errors"></span><h2><a class="reference internal" href="#module-errors" title="errors"><tt class="xref py py-mod docutils literal"><span class="pre">Errors</span></tt></a><a class="headerlink" href="#module-errors" title="Permalink to this headline">¶</a></h2>
+<span id="errors"></span><h2><a class="reference internal" href="#module-errors" title="errors"><code class="xref py py-mod docutils literal"><span class="pre">Errors</span></code></a><a class="headerlink" href="#module-errors" title="Permalink to this headline">¶</a></h2>
 <dl class="exception">
 <dt id="errors.InvalidQueryError">
-<em class="property">exception </em><tt class="descclassname">errors.</tt><tt class="descname">InvalidQueryError</tt><big>(</big><em>response</em><big>)</big><a class="headerlink" href="#errors.InvalidQueryError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="descclassname">errors.</code><code class="descname">InvalidQueryError</code><span class="sig-paren">(</span><em>response</em><span class="sig-paren">)</span><a class="headerlink" href="#errors.InvalidQueryError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Raised when a search is invalid according to the OEIS search syntax.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="errors.NoResultsError">
-<em class="property">exception </em><tt class="descclassname">errors.</tt><tt class="descname">NoResultsError</tt><big>(</big><em>query</em><big>)</big><a class="headerlink" href="#errors.NoResultsError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="descclassname">errors.</code><code class="descname">NoResultsError</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="headerlink" href="#errors.NoResultsError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Raised when a search gives no results and it is unacceptable to return
 an empty list.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="errors.OEISException">
-<em class="property">exception </em><tt class="descclassname">errors.</tt><tt class="descname">OEISException</tt><a class="headerlink" href="#errors.OEISException" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="descclassname">errors.</code><code class="descname">OEISException</code><a class="headerlink" href="#errors.OEISException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Base class for PyOEIS exceptions.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="errors.TooManyResultsError">
-<em class="property">exception </em><tt class="descclassname">errors.</tt><tt class="descname">TooManyResultsError</tt><big>(</big><em>query</em><big>)</big><a class="headerlink" href="#errors.TooManyResultsError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="descclassname">errors.</code><code class="descname">TooManyResultsError</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span><a class="headerlink" href="#errors.TooManyResultsError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Raised when too many results are found for a search for them to be
 properly parsed.</p>
 </dd></dl>
@@ -261,18 +261,18 @@ properly parsed.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">API</a><ul>
-<li><a class="reference internal" href="#oeisclient-objects"><tt class="docutils literal"><span class="pre">OEISClient</span></tt> objects</a></li>
-<li><a class="reference internal" href="#sequence-objects"><tt class="docutils literal"><span class="pre">Sequence</span></tt> objects</a><ul>
+<li><a class="reference internal" href="#oeisclient-objects"><code class="docutils literal"><span class="pre">OEISClient</span></code> objects</a></li>
+<li><a class="reference internal" href="#sequence-objects"><code class="docutils literal"><span class="pre">Sequence</span></code> objects</a><ul>
 <li><a class="reference internal" href="#attributes">Attributes</a></li>
 <li><a class="reference internal" href="#methods">Methods</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-errors"><tt class="docutils literal"><span class="pre">Errors</span></tt></a></li>
+<li><a class="reference internal" href="#module-errors"><code class="docutils literal"><span class="pre">Errors</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -283,12 +283,14 @@ properly parsed.</p>
   <h4>Next topic</h4>
   <p class="topless"><a href="usage.html"
                         title="next chapter">Usage</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/api.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/api.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -305,7 +307,7 @@ properly parsed.</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -320,12 +322,12 @@ properly parsed.</p>
         <li class="right" >
           <a href="introduction.html" title="Introduction"
              >previous</a> |</li>
-        <li><a href="index.html">PyOEIS 1.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyOEIS 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2015, Dylan Evans.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
     </div>
   </body>
 </html>

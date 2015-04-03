@@ -214,11 +214,11 @@ class OEISClient(object):
     lookup_by_name = partialmethod(lookup_by, 'name', list_func=True)
     lookup_by_name.__doc__ = '''Returns a list of
                                 :class:`Sequence <sequence.Sequence>` objects
-                                whose names contain *query*.'''
+                                whose names contain *name*.'''
     lookup_by_author = partialmethod(lookup_by, 'author', list_func=True)
     lookup_by_author.__doc__ = '''Returns a list of
                                   :class:`Sequence <sequence.Sequence>` objects
-                                  whose authors contain *query*.'''
+                                  whose authors contain *author*.'''
 
     def lookup_by_keywords(self, keywords):
         '''Returns a list of at most *max_seqs*

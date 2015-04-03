@@ -9,7 +9,7 @@
     <dc:publisher>unknown</dc:publisher>
     <dc:rights>2015, Dylan Evans</dc:rights>
     <dc:identifier id="unknown" opf:scheme="unknown">unknown</dc:identifier>
-    <dc:date>2015-01-17</dc:date>
+    <dc:date>2015-04-03</dc:date>
   </metadata>
   <manifest>
     <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml" />
