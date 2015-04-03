@@ -21,7 +21,7 @@ API
   .. method:: lookup_by_name(name, max_seqs=10)
 
     Returns a list of at most *max_seqs* :class:`Sequence <sequence.Sequence>` 
-    objects whose names contain *query*.
+    objects whose names contain *name*.
 
     .. note::
 
@@ -34,7 +34,7 @@ API
   .. method:: lookup_by_author(author, max_seqs=10)
 
      Returns a list of at most *max_seqs* :class:`Sequence <sequence.Sequence>`
-     objects whose authors contain *query*.
+     objects whose authors contain *author*.
   
 :class:`Sequence <sequence.Sequence>` objects
 ---------------------------------------------
