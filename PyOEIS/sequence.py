@@ -178,17 +178,17 @@ class Sequence(object):
                 # Parenthesise operands (integers and 'n')
                 evaluable = regex.operands.sub(lambda m: '('+m.groups()[0]+')',
                                                evaluable)
-
                 # Handle implictit ('(2)(n)' and 'fac(i)fac(j)')
                 evaluable = regex.opp_paren.sub(')*(', evaluable)
-                evaluable = regex.opp_paren.sub(')*fac', evaluable)
                 # Handle exponentiation ('^')
                 evaluable = regex.expo.sub('**', evaluable)
-
+                print 'foo'
                 return evaluable
 
+            to_eval = make_evaluable(valid_formula)
+
             def generate(n):
-                return eval(make_evaluable(valid_formula))
+                return eval(to_eval)
 
         return generate
 
