@@ -182,7 +182,6 @@ class Sequence(object):
                 evaluable = regex.opp_paren.sub(')*(', evaluable)
                 # Handle exponentiation ('^')
                 evaluable = regex.expo.sub('**', evaluable)
-                print 'foo'
                 return evaluable
 
             to_eval = make_evaluable(valid_formula)
