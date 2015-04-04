@@ -33,3 +33,34 @@ class InvalidQueryError(OEISException):
 
     def __str__(self):
         return self.response
+
+
+class MalformedSequenceError(OEISException):
+    '''Raised when a sequence entry does not contain the required
+       information in a parsable format.'''
+    def __init__(self, malformed_line):
+        self.malformed_line = malformed_line
+
+    def __str__(self):
+        return ("Line '" + self.malformed_line +
+                "' is malformed in the sequence entry.")
+
+
+class FunctionNotParsableError(OEISException):
+    '''Raised when a sequence's formula cannot be parsed by
+       PyOEIS.'''
+    def __init__(self, seq):
+        self.seq_name = seq.name
+
+    def __str__(self):
+        return ("The formula for the sequence '" + self.seq_name +
+                "' is not parsable.")
+
+
+class NoFunctionError(OEISException):
+    '''Raised when a sequence has no formula.'''
+    def __init__(self, seq):
+        self.seq_name = seq.name
+
+    def __str__(self):
+        return "The sequence '" + self.seq_name + "' has no formula listed."

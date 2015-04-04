@@ -1,7 +1,6 @@
 import requests
 from sequence import Sequence
 import regex
-import helpers
 from errors import NoResultsError, InvalidQueryError, TooManyResultsError
 from partialmethod import partialmethod
 
@@ -32,121 +31,6 @@ class OEISClient(object):
         if response_text.find('Too many results.') != -1:
             raise TooManyResultsError(query)
 
-    def _parse_sequence(self, sequence_entry):
-        '''Builds a Sequence object from an individual internal format
-           sequence entry and returns it.'''
-
-        s = Sequence()
-
-        # parse %I
-        id_search = regex.id.search(sequence_entry)
-        s.id = id_search.groups()[0]
-        s.alt_ids.extend(id_search.groups()[1:])
-
-        # parse %S, %T and %U
-        unsigned_findall = regex.unsigned.findall(sequence_entry)
-        unsigned_strs = helpers.parse_comma_separated_findall(unsigned_findall)
-        s.unsigned_list = map(int, unsigned_strs)
-
-        # parse %V, %W and %X
-        try:
-            signed_findall = regex.signed.findall(sequence_entry)
-            signed_strs = helpers.parse_comma_separated_findall(signed_findall)
-            s.signed_list = map(int, signed_strs)
-        except AttributeError:
-            pass
-
-        # parse %N
-        name_search = regex.name.search(sequence_entry)
-        s.name = name_search.groups()[0]
-
-        # parse %D
-        try:
-            reference_findall = regex.reference.findall(sequence_entry)
-            s.references = reference_findall
-        except AttributeError:
-            pass
-
-        # parse %H
-        try:
-            link_findall = regex.link.findall(sequence_entry)
-            for l in link_findall:
-                url = l[1]
-                text = l[0] + l[2] + l[3]
-                s.links.append({'text': text, 'url': url})
-        except AttributeError:
-            pass
-
-        # parse %F
-        try:
-            formula_findall = regex.formula.findall(sequence_entry)
-            s.formulae.extend(formula_findall)
-        except AttributeError:
-            pass
-
-        # parse %Y
-        try:
-            crossref_findall = regex.cross_reference.findall(sequence_entry)
-            s.cross_references.extend(crossref_findall)
-        except AttributeError:
-            pass
-
-        # parse %A
-        author_search = regex.author.search(sequence_entry)
-        s.author = author_search.groups()[0]
-
-        # parse %O
-        offset_search = regex.offset.search(sequence_entry)
-        s.offset = tuple(map(int, offset_search.groups()))
-
-        # parse %E
-        try:
-            error_findall = regex.error.findall(sequence_entry)
-            s.errors.extend(error_findall)
-        except AttributeError:
-            pass
-
-        # parse %e
-        try:
-            example_findall = regex.example.findall(sequence_entry)
-            s.examples.extend(example_findall)
-        except AttributeError:
-            pass
-
-        # parse %p
-        try:
-            maple_search = regex.maple.search(sequence_entry)
-            s.maple = maple_search.groups()[0]
-        except AttributeError:
-            pass
-
-        # parse %t
-        try:
-            mathematica_search = regex.mathematica.search(sequence_entry)
-            s.mathematica = mathematica_search.groups()[0]
-        except AttributeError:
-            pass
-
-        # parse %o
-        try:
-            otherprogs_findall = regex.other_programs.findall(sequence_entry)
-            s.other_programs.extend(otherprogs_findall)
-        except AttributeError:
-            pass
-
-        # parse %K
-        keywords_findall = regex.keywords.findall(sequence_entry)
-        s.keywords = helpers.parse_comma_separated_findall(keywords_findall)
-
-        # parse %C
-        try:
-            comment_findall = regex.comment.findall(sequence_entry)
-            s.comments.extend(comment_findall)
-        except AttributeError:
-            pass
-
-        return s
-
     def _parse_response(self, response_text):
         '''Takes a multi-sequence internal format response & builds
            Sequence objects for each sequence. Returns a list of the
@@ -158,7 +42,7 @@ class OEISClient(object):
             return seqs
 
         for entry in blankline_split[2:-1]:      # stripping header & footer
-            seqs.append(self._parse_sequence(entry))
+            seqs.append(Sequence(entry))
 
         return seqs
 
