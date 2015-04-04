@@ -36,8 +36,17 @@ API
      Returns a list of at most *max_seqs* :class:`Sequence <sequence.Sequence>`
      objects whose authors contain *author*.
   
+  
 :class:`Sequence <sequence.Sequence>` objects
 ---------------------------------------------
+.. autoclass:: sequence.Sequence
+   :members: signed, unsigned
+
+.. method:: generate(n)
+
+   If a parsable formula exists, returns the *nth* term of the sequence, else
+   raises a :exc:`NoFunctionError <errors.NoFunctionError>`.
+
 
 Attributes
 ^^^^^^^^^^

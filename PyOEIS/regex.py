@@ -1,6 +1,6 @@
 import re
 
-
+# OEIS Internal Format parsing
 id = re.compile(ur'^%I (A\d+) ?([MN]\d+)? ?([MN]\d+)?', re.M)
 unsigned = re.compile(ur'^%[STU] A\d+ ((?:\d+,?)*)', re.M)
 signed = re.compile(ur'^%[VWX] A\d+ ((?:-?\d+,?)*)', re.M)
@@ -20,3 +20,12 @@ keywords = re.compile(ur'%K A\d+ [a-zA-Z]+,?', re.M)
 comment = re.compile(ur'%C A\d+ (.+)', re.M)
 blank_line = re.compile(ur'^\n\s*', re.M)
 showing_line = re.compile(ur'Showing \d+-\d+ of (\d+)')
+
+# Maths expression parsing
+valid = re.compile(ur'^[()^+-/*!n\d]+$')
+parens = re.compile(ur'\([+-/n\d*!^]+\)')
+operands = re.compile(ur'(\d+|n)')
+fac = re.compile(ur'(\(?[+\d*-/n^]+\)?)!')
+opp_paren = re.compile(ur'\)\(')
+paren_fac = re.compile(ur'\)fac')
+expo = re.compile(ur'\^')

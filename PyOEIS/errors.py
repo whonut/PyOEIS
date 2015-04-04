@@ -46,17 +46,6 @@ class MalformedSequenceError(OEISException):
                 "' is malformed in the sequence entry.")
 
 
-class FunctionNotParsableError(OEISException):
-    '''Raised when a sequence's formula cannot be parsed by
-       PyOEIS.'''
-    def __init__(self, seq):
-        self.seq_name = seq.name
-
-    def __str__(self):
-        return ("The formula for the sequence '" + self.seq_name +
-                "' is not parsable.")
-
-
 class NoFunctionError(OEISException):
     '''Raised when a sequence has no formula.'''
     def __init__(self, seq):

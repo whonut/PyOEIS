@@ -1,10 +1,13 @@
 import regex
 from helpers import parse_comma_separated_findall
-from errors import MalformedSequenceError
+from errors import MalformedSequenceError, NoFunctionError
+from math import factorial as fac  # NOQA
 
 
 class Sequence(object):
-    '''Has attributes to contain information for each field of a
+    '''Takes internal format sequence entry as constructor argument.
+
+       Has attributes to contain information for each field of a
        sequence entry in the OEIS and methods fot retrieving a certain
        number of the sequence's signed or unsigned terms.'''
 
@@ -137,8 +140,60 @@ class Sequence(object):
         except AttributeError:     # sequence entry has no %C
             self.comments = []
 
+        # create generate method
+        self.generate = self._make_generate()
+        self.generate.__doc__ = """
+                                If a parsable formula exists, returns
+                                the *n*th term of the sequence, else
+                                raises a
+                                :exc:`NoFunctionError <errors.NoFunctionError>`
+                                """
+
     def __str__(self):
         return '<Sequence object for "' + self.name + '">'
+
+    def _make_generate(self):
+        raw = self.raw_formula
+        raw = raw.replace(u' ', u'')
+        print raw
+        candidates = raw.split(u'=')
+        print candidates
+        valid_formula = None
+        for s in candidates:
+            print repr(s)
+            valid = regex.valid.match(s) is not None
+            if valid:
+                valid_formula = s
+                break
+
+        if valid_formula is None:
+            def generate(n):
+                raise NoFunctionError(self)
+        else:
+            def make_evaluable(expr):
+                parens = (p[1:-1] for p in regex.parens.findall(expr))
+                evaluable = expr
+                for pair in zip(parens, map(make_evaluable, parens)):
+                    evaluable = evaluable.replace(pair[0], pair[1])
+                # Handle factorials ('!')
+                evaluable = regex.fac.sub(lambda m: '(fac('+m.groups()[0]+'))',
+                                          evaluable)
+                # Parenthesise operands (integers and 'n')
+                evaluable = regex.operands.sub(lambda m: '('+m.groups()[0]+')',
+                                               evaluable)
+
+                # Handle implictit ('(2)(n)' and 'fac(i)fac(j)')
+                evaluable = regex.opp_paren.sub(')*(', evaluable)
+                evaluable = regex.opp_paren.sub(')*fac', evaluable)
+                # Handle exponentiation ('^')
+                evaluable = regex.expo.sub('**', evaluable)
+
+                return evaluable
+
+            def generate(n):
+                return eval(make_evaluable(valid_formula))
+
+        return generate
 
     def unsigned(self, n):
         '''Returns the first *n* unsigned integers in the sequence.'''
