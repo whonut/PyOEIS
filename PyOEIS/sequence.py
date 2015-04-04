@@ -155,12 +155,9 @@ class Sequence(object):
     def _make_generate(self):
         raw = self.raw_formula
         raw = raw.replace(u' ', u'')
-        print raw
         candidates = raw.split(u'=')
-        print candidates
         valid_formula = None
         for s in candidates:
-            print repr(s)
             valid = regex.valid.match(s) is not None
             if valid:
                 valid_formula = s
