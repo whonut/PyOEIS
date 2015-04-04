@@ -43,8 +43,8 @@
 <dl class="class">
 <dt id="client.OEISClient">
 <em class="property">class </em><code class="descclassname">client.</code><code class="descname">OEISClient</code></dt>
-<dd><p>Maintains a <a class="reference external" href="http://docs.python-requests.org/en/latest/api/#requests.Session" title="(in Requests v2.6.0)"><code class="xref py py-class docutils literal"><span class="pre">Session</span></code></a><span class="link-target"> [http://docs.python-requests.org/en/latest/api/#requests.Session]</span> and contains
-all methods for querying the OEIS.</p>
+<dd><p>Maintains a <a class="reference external" href="http://docs.python-requests.org/en/latest/api/#requests.Session" title="(in Requests v2.6.0)"><code class="xref py py-class docutils literal"><span class="pre">Session</span></code></a><span class="link-target"> [http://docs.python-requests.org/en/latest/api/#requests.Session]</span> and
+contains all methods for querying the OEIS.</p>
 <dl class="method">
 <dt id="OEISClient.get_by_id">
 <code class="descname">get_by_id</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span></dt>
@@ -85,9 +85,9 @@ objects whose authors contain <em>author</em>.</p>
 <dd><p>If <em>prefix</em> is <cite>&#8220;&#8221;</cite>, search OEIS with string <em>query</em>,
 otherwise use string &#8216;<em>prefix</em>:<em>query</em>&#8216;.</p>
 <p>If <em>list_func</em> is true, return a list of at most
-<em>max_seqs</em> <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><code class="xref py py-class docutils literal"><span class="pre">Sequence</span></code></a> objects or else an
-empty list if there are no results. If <em>list_func</em> is false, return
-the first Sequence found, or else raise a
+<em>max_seqs</em> <a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><code class="xref py py-class docutils literal"><span class="pre">Sequence</span></code></a> objects or
+else an empty list if there are no results. If <em>list_func</em>
+is false, return the first Sequence found, or else raise a
 <a class="reference internal" href="#errors.NoResultsError" title="errors.NoResultsError"><code class="xref py py-exc docutils literal"><span class="pre">NoResultsError</span></code></a>.</p>
 </dd></dl>
 
@@ -95,18 +95,19 @@ the first Sequence found, or else raise a
 <dt id="client.OEISClient.lookup_by_keywords">
 <code class="descname">lookup_by_keywords</code><span class="sig-paren">(</span><em>keywords</em><span class="sig-paren">)</span></dt>
 <dd><p>Returns a list of at most <em>max_seqs</em>
-<a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><code class="xref py py-class docutils literal"><span class="pre">Sequence</span></code></a> objects which are tagged with
-<em>keywords</em>.</p>
+<a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><code class="xref py py-class docutils literal"><span class="pre">Sequence</span></code></a> objects which are
+tagged with <em>keywords</em>.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="client.OEISClient.lookup_by_terms">
 <code class="descname">lookup_by_terms</code><span class="sig-paren">(</span><em>terms</em>, <em>**kwargs</em><span class="sig-paren">)</span></dt>
 <dd><p>Returns a list of at most <em>max_seqs</em>
-<a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><code class="xref py py-class docutils literal"><span class="pre">Sequence</span></code></a> objects which contain <em>terms</em>
-anywhere within them. If none exist, returns an empty list. If
-<em>ordered</em> is false, terms may be in any order. If <em>signed</em> is false,
-terms may be positive or negative.</p>
+<a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><code class="xref py py-class docutils literal"><span class="pre">Sequence</span></code></a> objects which
+contain <em>terms</em> anywhere within them. If none exist,
+returns an empty list. If <em>ordered</em> is false, terms may be
+in any order. If <em>signed</em> is false, terms may be positive
+or negative.</p>
 </dd></dl>
 
 </dd></dl>
@@ -114,6 +115,34 @@ terms may be positive or negative.</p>
 </div>
 <div class="section" id="sequence-objects">
 <h2><a class="reference internal" href="#sequence.Sequence" title="sequence.Sequence"><code class="xref py py-class docutils literal"><span class="pre">Sequence</span></code></a> objects</h2>
+<dl class="class">
+<dt id="sequence.Sequence">
+<em class="property">class </em><code class="descclassname">sequence.</code><code class="descname">Sequence</code><span class="sig-paren">(</span><em>sequence_entry</em><span class="sig-paren">)</span></dt>
+<dd><p>Takes internal format sequence entry as constructor argument.</p>
+<p>Has attributes to contain information for each field of a
+sequence entry in the OEIS and methods fot retrieving a certain
+number of the sequence&#8217;s signed or unsigned terms.</p>
+<dl class="method">
+<dt id="sequence.Sequence.signed">
+<code class="descname">signed</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns the first <em>n</em> signed integers in the sequence.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sequence.Sequence.unsigned">
+<code class="descname">unsigned</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span></dt>
+<dd><p>Returns the first <em>n</em> unsigned integers in the sequence.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="generate">
+<code class="descname">generate</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span></dt>
+<dd><p>If a parsable formula exists, returns the <em>nth</em> term of the sequence, else
+raises a <a class="reference internal" href="#errors.NoFunctionError" title="errors.NoFunctionError"><code class="xref py py-exc docutils literal"><span class="pre">NoFunctionError</span></code></a>.</p>
+</dd></dl>
+
 <div class="section" id="attributes">
 <h3>Attributes</h3>
 <table border="1" class="docutils">
@@ -189,19 +218,20 @@ a list of strings.</td>
 <div class="section" id="methods">
 <h3>Methods</h3>
 <dl class="class">
-<dt id="sequence.Sequence">
-<em class="property">class </em><code class="descclassname">sequence.</code><code class="descname">Sequence</code></dt>
-<dd><p>Has attributes to contain information for each field of a sequence entry
-in the OEIS and methods fot retrieving a certain number of the
-sequence&#8217;s signed or unsigned terms.</p>
+<dt>
+<em class="property">class </em><code class="descclassname">sequence.</code><code class="descname">Sequence</code><span class="sig-paren">(</span><em>sequence_entry</em><span class="sig-paren">)</span></dt>
+<dd><p>Takes internal format sequence entry as constructor argument.</p>
+<p>Has attributes to contain information for each field of a
+sequence entry in the OEIS and methods fot retrieving a certain
+number of the sequence&#8217;s signed or unsigned terms.</p>
 <dl class="method">
-<dt id="sequence.Sequence.signed">
+<dt>
 <code class="descname">signed</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span></dt>
 <dd><p>Returns the first <em>n</em> signed integers in the sequence.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="sequence.Sequence.unsigned">
+<dt>
 <code class="descname">unsigned</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span></dt>
 <dd><p>Returns the first <em>n</em> unsigned integers in the sequence.</p>
 </dd></dl>
@@ -215,14 +245,28 @@ sequence&#8217;s signed or unsigned terms.</p>
 <dl class="exception">
 <dt id="errors.InvalidQueryError">
 <em class="property">exception </em><code class="descclassname">errors.</code><code class="descname">InvalidQueryError</code><span class="sig-paren">(</span><em>response</em><span class="sig-paren">)</span></dt>
-<dd><p>Raised when a search is invalid according to the OEIS search syntax.</p>
+<dd><p>Raised when a search is invalid according to the OEIS search
+syntax.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="errors.MalformedSequenceError">
+<em class="property">exception </em><code class="descclassname">errors.</code><code class="descname">MalformedSequenceError</code><span class="sig-paren">(</span><em>malformed_line</em><span class="sig-paren">)</span></dt>
+<dd><p>Raised when a sequence entry does not contain the required
+information in a parsable format.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="errors.NoFunctionError">
+<em class="property">exception </em><code class="descclassname">errors.</code><code class="descname">NoFunctionError</code><span class="sig-paren">(</span><em>seq</em><span class="sig-paren">)</span></dt>
+<dd><p>Raised when a sequence has no formula.</p>
 </dd></dl>
 
 <dl class="exception">
 <dt id="errors.NoResultsError">
 <em class="property">exception </em><code class="descclassname">errors.</code><code class="descname">NoResultsError</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span></dt>
-<dd><p>Raised when a search gives no results and it is unacceptable to return
-an empty list.</p>
+<dd><p>Raised when a search gives no results and it is unacceptable to
+return an empty list.</p>
 </dd></dl>
 
 <dl class="exception">
@@ -234,8 +278,8 @@ an empty list.</p>
 <dl class="exception">
 <dt id="errors.TooManyResultsError">
 <em class="property">exception </em><code class="descclassname">errors.</code><code class="descname">TooManyResultsError</code><span class="sig-paren">(</span><em>query</em><span class="sig-paren">)</span></dt>
-<dd><p>Raised when too many results are found for a search for them to be
-properly parsed.</p>
+<dd><p>Raised when too many results are found for a search for them to
+be properly parsed.</p>
 </dd></dl>
 
 </div>

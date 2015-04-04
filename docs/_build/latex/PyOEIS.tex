@@ -19,7 +19,7 @@
 
 
 \title{PyOEIS Documentation}
-\date{April 03, 2015}
+\date{April 04, 2015}
 \release{1.0}
 \author{Dylan Evans}
 \newcommand{\sphinxlogo}{}
@@ -171,8 +171,8 @@ may therefore be of use:
 
 \begin{fulllineitems}
 \phantomsection\label{api:client.OEISClient}\pysigline{\strong{class }\code{client.}\bfcode{OEISClient}}
-Maintains a \href{http://docs.python-requests.org/en/latest/api/\#requests.Session}{\code{Session}} and contains
-all methods for querying the OEIS.
+Maintains a \href{http://docs.python-requests.org/en/latest/api/\#requests.Session}{\code{Session}} and
+contains all methods for querying the OEIS.
 \index{get\_by\_id() (OEISClient method)}
 
 \begin{fulllineitems}
@@ -221,9 +221,9 @@ If \emph{prefix} is \emph{``''}, search OEIS with string \emph{query},
 otherwise use string `\emph{prefix}:\emph{query}`.
 
 If \emph{list\_func} is true, return a list of at most
-\emph{max\_seqs} {\hyperref[api:sequence.Sequence]{\emph{\code{Sequence}}}} objects or else an
-empty list if there are no results. If \emph{list\_func} is false, return
-the first Sequence found, or else raise a
+\emph{max\_seqs} {\hyperref[api:sequence.Sequence]{\emph{\code{Sequence}}}} objects or
+else an empty list if there are no results. If \emph{list\_func}
+is false, return the first Sequence found, or else raise a
 {\hyperref[api:errors.NoResultsError]{\emph{\code{NoResultsError}}}}.
 
 \end{fulllineitems}
@@ -233,8 +233,8 @@ the first Sequence found, or else raise a
 \begin{fulllineitems}
 \phantomsection\label{api:client.OEISClient.lookup_by_keywords}\pysiglinewithargsret{\bfcode{lookup\_by\_keywords}}{\emph{keywords}}{}
 Returns a list of at most \emph{max\_seqs}
-{\hyperref[api:sequence.Sequence]{\emph{\code{Sequence}}}} objects which are tagged with
-\emph{keywords}.
+{\hyperref[api:sequence.Sequence]{\emph{\code{Sequence}}}} objects which are
+tagged with \emph{keywords}.
 
 \end{fulllineitems}
 
@@ -243,10 +243,11 @@ Returns a list of at most \emph{max\_seqs}
 \begin{fulllineitems}
 \phantomsection\label{api:client.OEISClient.lookup_by_terms}\pysiglinewithargsret{\bfcode{lookup\_by\_terms}}{\emph{terms}, \emph{**kwargs}}{}
 Returns a list of at most \emph{max\_seqs}
-{\hyperref[api:sequence.Sequence]{\emph{\code{Sequence}}}} objects which contain \emph{terms}
-anywhere within them. If none exist, returns an empty list. If
-\emph{ordered} is false, terms may be in any order. If \emph{signed} is false,
-terms may be positive or negative.
+{\hyperref[api:sequence.Sequence]{\emph{\code{Sequence}}}} objects which
+contain \emph{terms} anywhere within them. If none exist,
+returns an empty list. If \emph{ordered} is false, terms may be
+in any order. If \emph{signed} is false, terms may be positive
+or negative.
 
 \end{fulllineitems}
 
@@ -256,7 +257,44 @@ terms may be positive or negative.
 
 
 \section{\texttt{Sequence} objects}
-\label{api:sequence-objects}
+\label{api:sequence-objects}\index{Sequence (class in sequence)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:sequence.Sequence}\pysiglinewithargsret{\strong{class }\code{sequence.}\bfcode{Sequence}}{\emph{sequence\_entry}}{}
+Takes internal format sequence entry as constructor argument.
+
+Has attributes to contain information for each field of a
+sequence entry in the OEIS and methods fot retrieving a certain
+number of the sequence's signed or unsigned terms.
+\index{signed() (sequence.Sequence method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:sequence.Sequence.signed}\pysiglinewithargsret{\bfcode{signed}}{\emph{n}}{}
+Returns the first \emph{n} signed integers in the sequence.
+
+\end{fulllineitems}
+
+\index{unsigned() (sequence.Sequence method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:sequence.Sequence.unsigned}\pysiglinewithargsret{\bfcode{unsigned}}{\emph{n}}{}
+Returns the first \emph{n} unsigned integers in the sequence.
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+\index{generate()}
+
+\begin{fulllineitems}
+\phantomsection\label{api:generate}\pysiglinewithargsret{\bfcode{generate}}{\emph{n}}{}
+If a parsable formula exists, returns the \emph{nth} term of the sequence, else
+raises a {\hyperref[api:errors.NoFunctionError]{\emph{\code{NoFunctionError}}}}.
+
+\end{fulllineitems}
+
+
 
 \subsection{Attributes}
 \label{api:attributes}
@@ -368,14 +406,16 @@ More information about the fields in a sequence entry can be found \href{http://
 \label{api:methods}\index{Sequence (class in sequence)}
 
 \begin{fulllineitems}
-\phantomsection\label{api:sequence.Sequence}\pysigline{\strong{class }\code{sequence.}\bfcode{Sequence}}
-Has attributes to contain information for each field of a sequence entry
-in the OEIS and methods fot retrieving a certain number of the
-sequence's signed or unsigned terms.
+\pysiglinewithargsret{\strong{class }\code{sequence.}\bfcode{Sequence}}{\emph{sequence\_entry}}{}
+Takes internal format sequence entry as constructor argument.
+
+Has attributes to contain information for each field of a
+sequence entry in the OEIS and methods fot retrieving a certain
+number of the sequence's signed or unsigned terms.
 \index{signed() (sequence.Sequence method)}
 
 \begin{fulllineitems}
-\phantomsection\label{api:sequence.Sequence.signed}\pysiglinewithargsret{\bfcode{signed}}{\emph{n}}{}
+\pysiglinewithargsret{\bfcode{signed}}{\emph{n}}{}
 Returns the first \emph{n} signed integers in the sequence.
 
 \end{fulllineitems}
@@ -383,7 +423,7 @@ Returns the first \emph{n} signed integers in the sequence.
 \index{unsigned() (sequence.Sequence method)}
 
 \begin{fulllineitems}
-\phantomsection\label{api:sequence.Sequence.unsigned}\pysiglinewithargsret{\bfcode{unsigned}}{\emph{n}}{}
+\pysiglinewithargsret{\bfcode{unsigned}}{\emph{n}}{}
 Returns the first \emph{n} unsigned integers in the sequence.
 
 \end{fulllineitems}
@@ -398,7 +438,25 @@ Returns the first \emph{n} unsigned integers in the sequence.
 
 \begin{fulllineitems}
 \phantomsection\label{api:errors.InvalidQueryError}\pysiglinewithargsret{\strong{exception }\code{errors.}\bfcode{InvalidQueryError}}{\emph{response}}{}
-Raised when a search is invalid according to the OEIS search syntax.
+Raised when a search is invalid according to the OEIS search
+syntax.
+
+\end{fulllineitems}
+
+\index{MalformedSequenceError}
+
+\begin{fulllineitems}
+\phantomsection\label{api:errors.MalformedSequenceError}\pysiglinewithargsret{\strong{exception }\code{errors.}\bfcode{MalformedSequenceError}}{\emph{malformed\_line}}{}
+Raised when a sequence entry does not contain the required
+information in a parsable format.
+
+\end{fulllineitems}
+
+\index{NoFunctionError}
+
+\begin{fulllineitems}
+\phantomsection\label{api:errors.NoFunctionError}\pysiglinewithargsret{\strong{exception }\code{errors.}\bfcode{NoFunctionError}}{\emph{seq}}{}
+Raised when a sequence has no formula.
 
 \end{fulllineitems}
 
@@ -406,8 +464,8 @@ Raised when a search is invalid according to the OEIS search syntax.
 
 \begin{fulllineitems}
 \phantomsection\label{api:errors.NoResultsError}\pysiglinewithargsret{\strong{exception }\code{errors.}\bfcode{NoResultsError}}{\emph{query}}{}
-Raised when a search gives no results and it is unacceptable to return
-an empty list.
+Raised when a search gives no results and it is unacceptable to
+return an empty list.
 
 \end{fulllineitems}
 
@@ -423,8 +481,8 @@ Base class for PyOEIS exceptions.
 
 \begin{fulllineitems}
 \phantomsection\label{api:errors.TooManyResultsError}\pysiglinewithargsret{\strong{exception }\code{errors.}\bfcode{TooManyResultsError}}{\emph{query}}{}
-Raised when too many results are found for a search for them to be
-properly parsed.
+Raised when too many results are found for a search for them to
+be properly parsed.
 
 \end{fulllineitems}
 
