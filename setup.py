@@ -9,7 +9,7 @@ if sys.version_info >= (3, ):
 setup(
     name='pyoeis',
     packages=['pyoeis', ],
-    version='1.1',
+    version='1.1.1',
     author='Dylan Evans',
     author_email='dylan@physicynicism.com',
     url='www.physicynicism.com',
