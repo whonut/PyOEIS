@@ -4,8 +4,8 @@ class OEISException(Exception):
 
 
 class NoResultsError(OEISException):
-    '''Raised when a search gives no results and it is unacceptable to return
-       an empty list.'''
+    '''Raised when a search gives no results and it is unacceptable to
+       return an empty list.'''
     def __init__(self, query):
         self.query = query
 
@@ -14,8 +14,8 @@ class NoResultsError(OEISException):
 
 
 class TooManyResultsError(OEISException):
-    '''Raised when too many results are found for a search for them to be
-       properly parsed.'''
+    '''Raised when too many results are found for a search for them to
+       be properly parsed.'''
     def __init__(self, query):
         self.query = query
 
@@ -26,7 +26,8 @@ class TooManyResultsError(OEISException):
 
 
 class InvalidQueryError(OEISException):
-    '''Raised when a search is invalid according to the OEIS search syntax.'''
+    '''Raised when a search is invalid according to the OEIS search
+       syntax.'''
     def __init__(self, response):
         self.response = response[response.find(':')+2:]
 

@@ -1,7 +1,7 @@
 class Sequence(object):
-    '''Has attributes to contain information for each field of a sequence entry
-       in the OEIS and methods fot retrieving a certain number of the
-       sequence's signed or unsigned terms.'''
+    '''Has attributes to contain information for each field of a
+       sequence entry in the OEIS and methods fot retrieving a certain
+       number of the sequence's signed or unsigned terms.'''
 
     def __init__(self):
         self.id = None

@@ -7,8 +7,8 @@ from partialmethod import partialmethod
 
 
 class OEISClient(object):
-    '''Maintains a :class:`Session<requests:requests.Session>` and contains
-       all methods for querying the OEIS.'''
+    '''Maintains a :class:`Session<requests:requests.Session>` and
+       contains all methods for querying the OEIS.'''
 
     SEARCH_URL = 'http://oeis.org/search'
 
@@ -17,8 +17,8 @@ class OEISClient(object):
         self.session.params = {'fmt': 'text'}
 
     def _check_response(self, response_text, query):
-        '''Checks reponses from the OEIS, raises relevant exception upon
-           error.'''
+        '''Checks reponses from the OEIS, raises relevant exception
+           upon error.'''
 
         # if no results are found, raise appropriate exception
         if response_text.find('\nNo results.\n') != -1:
@@ -148,9 +148,9 @@ class OEISClient(object):
         return s
 
     def _parse_response(self, response_text):
-        '''Takes a multi-sequence internal format response & builds Sequence
-           objects for each sequence. Returns a list of the Sequence
-           objects.'''
+        '''Takes a multi-sequence internal format response & builds
+           Sequence objects for each sequence. Returns a list of the
+           Sequence objects.'''
 
         blankline_split = regex.blank_line.split(response_text)
         seqs = []
@@ -167,9 +167,9 @@ class OEISClient(object):
            otherwise use string '*prefix*:*query*'.
 
            If *list_func* is true, return a list of at most
-           *max_seqs* :class:`Sequence <sequence.Sequence>` objects or else an
-           empty list if there are no results. If *list_func* is false, return
-           the first Sequence found, or else raise a
+           *max_seqs* :class:`Sequence <sequence.Sequence>` objects or
+           else an empty list if there are no results. If *list_func*
+           is false, return the first Sequence found, or else raise a
            :exc:`NoResultsError <errors.NoResultsError>`.'''
 
         if not prefix:
@@ -208,32 +208,35 @@ class OEISClient(object):
                 raise NoResultsError(search_string)
 
     get_by_id = partialmethod(lookup_by, 'id')
-    get_by_id.__doc__ = '''Returns a :class:`Sequence <sequence.Sequence>` for
-                           the sequence of the specified ID, else raises
-                           :exc:`NoResultsError`.'''
+    get_by_id.__doc__ = '''Returns a
+                           :class:`Sequence <sequence.Sequence>` for
+                           the sequence of the specified ID, else
+                           raises :exc:`NoResultsError`.'''
     lookup_by_name = partialmethod(lookup_by, 'name', list_func=True)
     lookup_by_name.__doc__ = '''Returns a list of
-                                :class:`Sequence <sequence.Sequence>` objects
-                                whose names contain *name*.'''
+                                :class:`Sequence <sequence.Sequence>`
+                                objects whose names contain *name*.'''
     lookup_by_author = partialmethod(lookup_by, 'author', list_func=True)
     lookup_by_author.__doc__ = '''Returns a list of
-                                  :class:`Sequence <sequence.Sequence>` objects
-                                  whose authors contain *author*.'''
+                                  :class:`Sequence <sequence.Sequence>`
+                                  objects whose authors contain
+                                  *author*.'''
 
     def lookup_by_keywords(self, keywords):
         '''Returns a list of at most *max_seqs*
-           :class:`Sequence <sequence.Sequence>` objects which are tagged with
-           *keywords*.'''
+           :class:`Sequence <sequence.Sequence>` objects which are
+           tagged with *keywords*.'''
 
         query = '"'+' '.join(keywords)+'"'
         return self.lookup_by('keyword', query, list_func=True)
 
     def lookup_by_terms(self, terms, **kwargs):
         '''Returns a list of at most *max_seqs*
-           :class:`Sequence <sequence.Sequence>` objects which contain *terms*
-           anywhere within them. If none exist, returns an empty list. If
-           *ordered* is false, terms may be in any order. If *signed* is false,
-           terms may be positive or negative.'''
+           :class:`Sequence <sequence.Sequence>` objects which
+           contain *terms* anywhere within them. If none exist,
+           returns an empty list. If *ordered* is false, terms may be
+           in any order. If *signed* is false, terms may be positive
+           or negative.'''
 
         # if order does not matter, specify in search query (space-delimited)
         if ('ordered' in kwargs) and not kwargs['ordered']:
@@ -250,9 +253,9 @@ class OEISClient(object):
             return self.lookup_by('signed', query, list_func=True)
 
     def extend_sequence(self, *terms):
-        '''Returns a :class:`Sequence <sequence.Sequence>` object for the
-           first sequence, sorting by relevance, which contains *terms*
-           consecutively.'''
+        '''Returns a :class:`Sequence <sequence.Sequence>` object for
+           the first sequence, sorting by relevance, which contains
+           *terms* consecutively.'''
 
         seqs = self.lookup_by_terms(*terms)
         return seqs[0]
