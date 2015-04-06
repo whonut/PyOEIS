@@ -28,5 +28,6 @@ setup(
                  'Topic :: Scientific/Engineering :: Mathematics',
                  'Operating System :: OS Independent',
                  'Programming Language :: Python'],
+    install_requires=['requests'],
     **extra
     )
