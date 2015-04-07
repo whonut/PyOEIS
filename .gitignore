@@ -3,3 +3,5 @@
 *.swp
 
 upload
+
+docs/_build/html/docs.zip
