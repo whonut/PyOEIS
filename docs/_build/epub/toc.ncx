@@ -68,21 +68,15 @@
           </navLabel>
           <content src="api.html#attributes" />
         </navPoint>
-        <navPoint id="navPoint11" playOrder="8">
-          <navLabel>
-            <text>Methods</text>
-          </navLabel>
-          <content src="api.html#methods" />
-        </navPoint>
       </navPoint>
-      <navPoint id="navPoint12" playOrder="9">
+      <navPoint id="navPoint11" playOrder="8">
         <navLabel>
           <text>Errors</text>
         </navLabel>
         <content src="api.html#module-errors" />
       </navPoint>
     </navPoint>
-    <navPoint id="navPoint13" playOrder="10">
+    <navPoint id="navPoint12" playOrder="9">
       <navLabel>
         <text>Usage</text>
       </navLabel>

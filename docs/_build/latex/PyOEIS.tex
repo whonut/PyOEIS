@@ -19,7 +19,7 @@
 
 
 \title{PyOEIS Documentation}
-\date{April 06, 2015}
+\date{April 07, 2015}
 \release{1.0}
 \author{Dylan Evans}
 \newcommand{\sphinxlogo}{}
@@ -400,37 +400,6 @@ Comments on the sequence entry, as a list of strings.
 
 
 More information about the fields in a sequence entry can be found \href{http://oeis.org/eishelp2.html}{here}.
-
-
-\subsection{Methods}
-\label{api:methods}\index{Sequence (class in sequence)}
-
-\begin{fulllineitems}
-\pysiglinewithargsret{\strong{class }\code{sequence.}\bfcode{Sequence}}{\emph{sequence\_entry}}{}
-Takes internal format sequence entry as constructor argument.
-
-Has attributes to contain information for each field of a
-sequence entry in the OEIS and methods fot retrieving a certain
-number of the sequence's signed or unsigned terms.
-\index{signed() (sequence.Sequence method)}
-
-\begin{fulllineitems}
-\pysiglinewithargsret{\bfcode{signed}}{\emph{n}}{}
-Returns the first \emph{n} signed integers in the sequence.
-
-\end{fulllineitems}
-
-\index{unsigned() (sequence.Sequence method)}
-
-\begin{fulllineitems}
-\pysiglinewithargsret{\bfcode{unsigned}}{\emph{n}}{}
-Returns the first \emph{n} unsigned integers in the sequence.
-
-\end{fulllineitems}
-
-
-\end{fulllineitems}
-
 
 
 \section{\texttt{Errors}}

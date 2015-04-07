@@ -81,12 +81,6 @@ comments         Comments on the sequence entry, as a list of strings.
 More information about the fields in a sequence entry can be found `here
 <http://oeis.org/eishelp2.html>`_.
 
-Methods
-^^^^^^^
-
-.. autoclass:: sequence.Sequence
-  :members:
-
 :mod:`Errors <errors>`
 ----------------------
 
