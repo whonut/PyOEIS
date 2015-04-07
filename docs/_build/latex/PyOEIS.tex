@@ -266,6 +266,15 @@ Takes internal format sequence entry as constructor argument.
 Has attributes to contain information for each field of a
 sequence entry in the OEIS and methods fot retrieving a certain
 number of the sequence's signed or unsigned terms.
+\index{generate() (Sequence method)}
+
+\begin{fulllineitems}
+\phantomsection\label{api:Sequence.generate}\pysiglinewithargsret{\bfcode{generate}}{\emph{n}}{}
+If a parsable formula exists, returns the \emph{nth} term of the sequence, else
+raises a {\hyperref[api:errors.NoFunctionError]{\emph{\code{NoFunctionError}}}}.
+
+\end{fulllineitems}
+
 \index{signed() (sequence.Sequence method)}
 
 \begin{fulllineitems}
@@ -282,15 +291,6 @@ Returns the first \emph{n} unsigned integers in the sequence.
 
 \end{fulllineitems}
 
-
-\end{fulllineitems}
-
-\index{generate()}
-
-\begin{fulllineitems}
-\phantomsection\label{api:generate}\pysiglinewithargsret{\bfcode{generate}}{\emph{n}}{}
-If a parsable formula exists, returns the \emph{nth} term of the sequence, else
-raises a {\hyperref[api:errors.NoFunctionError]{\emph{\code{NoFunctionError}}}}.
 
 \end{fulllineitems}
 

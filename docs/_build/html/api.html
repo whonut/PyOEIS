@@ -139,6 +139,13 @@ or negative.</p>
 sequence entry in the OEIS and methods fot retrieving a certain
 number of the sequence&#8217;s signed or unsigned terms.</p>
 <dl class="method">
+<dt id="Sequence.generate">
+<code class="descname">generate</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#Sequence.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>If a parsable formula exists, returns the <em>nth</em> term of the sequence, else
+raises a <a class="reference internal" href="#errors.NoFunctionError" title="errors.NoFunctionError"><code class="xref py py-exc docutils literal"><span class="pre">NoFunctionError</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="sequence.Sequence.signed">
 <code class="descname">signed</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#sequence.Sequence.signed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the first <em>n</em> signed integers in the sequence.</p>
@@ -150,13 +157,6 @@ number of the sequence&#8217;s signed or unsigned terms.</p>
 <dd><p>Returns the first <em>n</em> unsigned integers in the sequence.</p>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="method">
-<dt id="generate">
-<code class="descname">generate</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#generate" title="Permalink to this definition">¶</a></dt>
-<dd><p>If a parsable formula exists, returns the <em>nth</em> term of the sequence, else
-raises a <a class="reference internal" href="#errors.NoFunctionError" title="errors.NoFunctionError"><code class="xref py py-exc docutils literal"><span class="pre">NoFunctionError</span></code></a>.</p>
 </dd></dl>
 
 <div class="section" id="attributes">
