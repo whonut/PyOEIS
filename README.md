@@ -1,6 +1,6 @@
 # PyOEIS
 
-**This module no longer functions from Python 3.13 onwards due to the removal of `2to3`. Use [this fork](https://github.com/oddbookworm/PyOEIS3).
+**This module no longer functions from Python 3.13 onwards due to the removal of `2to3`. Use [this fork](https://github.com/oddbookworm/PyOEIS3).**
 
 ~~PyOEIS is a module for interfacing with the [Online Encyclopedia of Integer Sequences](http://oeis.org)~~
 
